@@ -38,6 +38,7 @@ public class SqlUtils extends AsyncTask<String, Integer, String> {
             conn.setDoInput(true);
             //Post方式不能缓存,需手动设置为false
             conn.setUseCaches(false);
+
 //                String data = "passwd="+ URLEncoder.encode("", "UTF-8")+
 //                        "&number="+ URLEncoder.encode("", "UTF-8");
             //这里可以写一些请求头的东东...

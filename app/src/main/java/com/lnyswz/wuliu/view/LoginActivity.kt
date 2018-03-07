@@ -3,25 +3,22 @@ package com.lnyswz.wuliu.view
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import android.util.Log
 import com.lnyswz.wuliu.R
 import com.lnyswz.wuliu.common.SqlUtils
 import com.lnyswz.wuliu.common.Utils
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
+    private var result: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        var btnLogin: Button = findViewById(R.id.btn_login)
-        btnLogin.setOnClickListener{
+        btn_login.setOnClickListener{
             var msg = check()
             if(msg.isEmpty()) {
                 login()
-                val getData = GetData1()
-                getData.execute("http://192.168.0.8/lnyswz/admin/departmentAction!listYws.action", "id=12")
-//            Utils.toast(this, et_name.text)
                 var intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("name", et_name.text.toString())
                 intent.putExtra("password", et_password.text.toString())
@@ -48,22 +45,17 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun login(){
-
+        Log.i("LoginActivity", "fun login()")
+        val getData = GetData()
+        getData.execute("http://192.168.0.8/lnyswz/admin/departmentAction!listYws.action", "id=12")
     }
 
-    internal inner class GetData1 : SqlUtils() {
-        //        GetData1(Context ctx){
-        //            super(ctx);
-        //        }
-
+    internal inner class GetData : SqlUtils() {
         override fun onPostExecute(s: String) {
+            Log.i("LoginActivity", "fun onPostExecute")
             super.onPostExecute(s)
-            //show.setText(s)
+            Log.i("LoginActivity", s)
         }
-//
-//        override fun doInBackground(vararg params: String): String {
-//            return super.doInBackground(params)
-//        }
     }
 
 }
