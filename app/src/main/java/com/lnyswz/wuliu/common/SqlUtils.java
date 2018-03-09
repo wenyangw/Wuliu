@@ -13,7 +13,15 @@ import java.util.Map;
  * Created by Wenyang on 2018/2/13.
  */
 
-public class SqlUtils extends AsyncTask<String, Integer, String> {
+public class SqlUtils extends AsyncTask<Void, Integer, String> {
+
+    private String address;
+    private Map<String, String> param;
+
+    public SqlUtils(String address, Map<String, String> param) {
+        this.address = address;
+        this.param = param;
+    }
 
     @Override
     protected void onPostExecute(String s) {
@@ -21,12 +29,12 @@ public class SqlUtils extends AsyncTask<String, Integer, String> {
     }
 
     @Override
-    protected String doInBackground(String... params) {
+    protected String doInBackground(Void... params) {
         String result = "";
         try {
-            URL url = new URL(params[0]);
+            URL url = new URL(address);
             //请求的数据:
-            String data = params[1];
+            String data = convertMapToString(param);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             //设置请求方式,请求超时信息
@@ -39,8 +47,8 @@ public class SqlUtils extends AsyncTask<String, Integer, String> {
             //Post方式不能缓存,需手动设置为false
             conn.setUseCaches(false);
 
-//                String data = "passwd="+ URLEncoder.encode("", "UTF-8")+
-//                        "&number="+ URLEncoder.encode("", "UTF-8");
+            //String data = "passwd="+ URLEncoder.encode("", "UTF-8")+
+            //    "&number="+ URLEncoder.encode("", "UTF-8");
             //这里可以写一些请求头的东东...
             //获取输出流
             OutputStream out = conn.getOutputStream();
@@ -71,6 +79,17 @@ public class SqlUtils extends AsyncTask<String, Integer, String> {
             e.printStackTrace();
         }
         return result;
+    }
+
+    private String convertMapToString(Map<String, String> param){
+        StringBuilder sb = new StringBuilder();
+        for (String key : param.keySet()) {
+            if(sb.length() > 0){
+                sb.append("&");
+            }
+            sb.append(key + param.get(key));
+        }
+        return sb.toString();
     }
 }
 
