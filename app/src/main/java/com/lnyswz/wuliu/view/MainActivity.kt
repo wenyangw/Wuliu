@@ -1,15 +1,11 @@
 package com.lnyswz.wuliu.view
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.lnyswz.wuliu.R
-import com.lnyswz.wuliu.common.ButtonBean
-import com.lnyswz.wuliu.common.SqlUtils
-import com.lnyswz.wuliu.common.UtilBean
-import com.lnyswz.wuliu.common.Utils
+import com.lnyswz.wuliu.common.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,65 +15,52 @@ class MainActivity : AppCompatActivity() {
         showMain()
     }
 
-    private fun showMain(){
-        val address = Utils.APP_URL + "/admin/menuAction!menuTreeM.action"
-        val params = mapOf("userId=" to intent.getStringExtra("userId"), "userName=" to intent.getStringExtra("userName"), "cid=" to Utils.CATALOG_ID)
-        SqlData(address, params).execute()
+    private fun showMain() {
+        val address = Utils.APP_URL + "/admin/menuAction!menuTree.action"
+        val params = mapOf("userId=" to intent.getStringExtra("userId"),
+                "userName=" to intent.getStringExtra("userName"),
+                "cid=" to Utils.CATALOG_ID)
+        SqlData4Menus(address, params).execute()
     }
 
-    private fun getButtons(){
+    private fun getButtons(menuId: String) {
         val address = Utils.APP_URL + "/admin/buttonAction!buttons.action"
         val params = mapOf("userId=" to intent.getStringExtra("userId"),
-                "menuId=" to intent.getStringExtra("userName"),
-                "tabId=" to Utils.CATALOG_ID,
-                "did=" to "14")
-        SqlData(address, params).execute()
+                "userName=" to intent.getStringExtra("userName"),
+                "mid=" to menuId,
+                "tabId=" to "0",
+                "did=" to intent.getStringExtra("did"))
+        SqlData4Buttons(address, params).execute()
     }
 
 
-
-    internal inner class SqlData(url: String, param: Map<String, String>) : SqlUtils(url, param) {
+    internal inner class SqlData4Menus(url: String, param: Map<String, String>) : SqlUtils(url, param) {
         override fun onPostExecute(s: String) {
             super.onPostExecute(s)
+            val menus = Utils.getListFromJson<List<ObjBean>>(s, object : TypeToken<List<ObjBean>>() {}.type)
 
-            Log.i("MainActivity", s)
-
-            //getMenu(s)
-
-
-            //val type = object : TypeToken<List<ButtonBean>>(){}.type
-            val strings = Gson().fromJson(s, Array<String>::class.java)
-
-            for (string in strings) {
-                Log.i("MainActivity", string)
+            for (menu in menus) if(menu.pid != null) {
+                Log.i("MainActivity", menu.id)
+                getButtons(menu.id)
             }
-
-            //val login = Gson().fromJson(s, UtilBean::class.java)
         }
     }
 
-    /**
-     * 将“{，，}，{，，}”这种格式的数据转换成字符串数组
-     * 目前传入的数据使用[]包围
-     */
-    private fun getButtons(str: String): Array<ButtonBean>?{
-        return null
+    internal inner class SqlData4Buttons(url: String, param: Map<String, String>) : SqlUtils(url, param) {
+        override fun onPostExecute(s: String) {
+            super.onPostExecute(s)
+            Log.i("TAG", s)
+
+            val buttons = Utils.getListFromJson<List<ObjBean>>(s, object : TypeToken<List<ObjBean>>() {}.type)
+
+            for (button in buttons) {
+                Log.i("MainActivity", button.orderNum)
+                Log.i("MainActivity", button.text)
+                Log.i("MainActivity", button.handler)
+            }
+        }
     }
 
-    private fun getMenu(str: String): Array<ButtonBean>?{
-        Log.i("MainActivity", tt(str))
-
-        return null
-    }
-
-    private fun tt(str: String): String{
-        var s = str.substring(1, str.length - 1)
-        val login = Gson().fromJson(s, ButtonBean::class.java)
-
-        Log.i("MainActivity", login.text)
-
-        return s
-    }
 
 
 }
