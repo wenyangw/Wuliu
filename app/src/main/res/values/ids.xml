@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="ckfh_scan_code" type="id" />
+    <item name="ckfh_list_record" type="id" />
+</resources>
