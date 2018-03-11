@@ -6,17 +6,4 @@
     android:layout_height="match_parent"
     android:id="@+id/layout_main"
     tools:context="com.lnyswz.wuliu.view.MainActivity">
-
-    <Button
-        android:id="@+id/btn_sacn_code"
-        android:text="复核"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        />
 </android.support.constraint.ConstraintLayout>
