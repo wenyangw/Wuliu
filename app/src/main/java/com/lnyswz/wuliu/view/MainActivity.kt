@@ -61,12 +61,9 @@ class MainActivity : AppCompatActivity() {
             var btn: Button?
             var lastId = 0
             for ((index, obj) in objs.withIndex()) {
-                btn = Button(applicationContext)
-                when(obj.handler){
-                    "ckfh_scan_code" -> btn.id = R.id.ckfh_scan_code
-                    "ckfh_list_record" -> btn.id = R.id.ckfh_list_record
 
-                }
+                btn = Button(applicationContext)
+                btn.id = Utils.getViewId(obj.handler)
                 btn.setOnClickListener{
                     view ->  when(view.id){
                         R.id.ckfh_scan_code -> ckfh_scan_code()
@@ -75,6 +72,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 btn.text = obj.text
                 layout?.addView(btn)
+
                 val set = ConstraintSet()
                 //复制原有的约束关系
                 set.clone(layout)
@@ -90,6 +88,7 @@ class MainActivity : AppCompatActivity() {
                     set.connect(btn.id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
                     set.connect(btn.id, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
                     set.connect(btn.id, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
+                    set.setVerticalBias(btn.id, 0.2f)
                     set.setMargin(btn.id, ConstraintSet.START, 80)
                     set.setMargin(btn.id, ConstraintSet.END, 80)
                 }else {
@@ -106,10 +105,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun ckfh_scan_code(){
-        Log.i("Tag", "ckfh_scan_code()")
+        Log.i("MainActivity", "ckfh_scan_code()")
+        val address = Utils.APP_URL + "/jxc/xsthAction!getXsth.action"
+        val params = mapOf("xsthlsh=" to "180305050184")
+        SqlData4Xsth(address, params).execute()
     }
     private fun ckfh_list_record(){
-        Log.i("Tag", "ckfh_list_record()")
+        Log.i("MainActivity", "ckfh_list_record()")
     }
+
+    internal inner class SqlData4Xsth(url: String, param: Map<String, String>) : SqlUtils(url, param) {
+        override fun onPostExecute(s: String) {
+            super.onPostExecute(s)
+            Log.i("MainActivity", s)
+
+            //val menus = Utils.getListFromJson<List<ObjBean>>(s, object : TypeToken<List<ObjBean>>() {}.type)
+        }
+    }
+
 
 }

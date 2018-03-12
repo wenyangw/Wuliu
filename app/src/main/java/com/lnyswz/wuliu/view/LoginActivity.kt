@@ -62,6 +62,7 @@ class LoginActivity : AppCompatActivity() {
             super.onPostExecute(s)
 
             val json = Utils.getObjectFromJson(s, JsonBean::class.java)
+
             if(json.success){
                 enterMain(json)
             }
