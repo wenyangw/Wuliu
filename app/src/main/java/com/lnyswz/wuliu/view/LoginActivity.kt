@@ -70,7 +70,3 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 }
-
-
-
-

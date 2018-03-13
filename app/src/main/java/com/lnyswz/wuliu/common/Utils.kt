@@ -38,16 +38,11 @@ object Utils {
         return Gson().fromJson<T>(key, cls)
     }
 
-    fun getViewId(key: String): Int{
-        when(key){
-            "ckfh_scan_code" -> return R.id.ckfh_scan_code
-            "ckfh_list_record" -> return R.id.ckfh_list_record
-        }
-        return 0
-    }
 }
 
 data class JsonBean(val success: Boolean, val msg: String, val obj: ObjBean)
+
+data class DatagridBean(val total: Long, val obj: ObjBean, val rows: List<ObjBean>)
 
 data class ObjBean(val id: String,
                     val userName: String,
@@ -55,4 +50,6 @@ data class ObjBean(val id: String,
                     val pid: String,
                     val text: String,
                     val handler: String,
-                    val orderNum: String)
+                    val orderNum: String,
+                   val xsthlsh: String,
+                   val spbh: String)
