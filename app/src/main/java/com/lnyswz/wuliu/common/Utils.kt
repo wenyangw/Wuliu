@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.Toast
 import com.google.gson.Gson
 import com.lnyswz.wuliu.R
+import java.io.StringBufferInputStream
 import java.lang.reflect.Type
 import java.util.*
 
@@ -52,4 +53,12 @@ data class ObjBean(val id: String,
                     val handler: String,
                     val orderNum: String,
                    val xsthlsh: String,
-                   val spbh: String)
+                   val bmmc: String,
+                   val khmc: String,
+                   val ckmc: String,
+                   val spbh: String,
+                    val spmc: String,
+                   val spcd: String,
+                   val sppp: String,
+                   val zjldwmc: String,
+                   val zdwsl: String)
