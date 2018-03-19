@@ -1,6 +1,5 @@
 package com.lnyswz.wuliu.view
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
@@ -12,7 +11,6 @@ import com.lnyswz.wuliu.R
 import com.lnyswz.wuliu.common.*
 import android.support.constraint.ConstraintSet
 import com.lnyswz.wuliu.common.SqlUtils
-import com.lnyswz.wuliu.common.zxing.activity.CaptureActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -111,43 +109,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun ckfh_scan_code(){
-	    Log.i("MainActivity", "ckfh_scan_code()")
-        val address = Utils.APP_URL + "/jxc/xsthAction!getXsth.action"
-        val params = mapOf("xsthlsh=" to "180305050184")
-        SqlData4Xsth(address, params).execute()
-
-        //sgj
-        //var openScan = Intent(this,CaptureActivity::class.java)
-        //startActivityForResult(openScan,0)
-    }
-
-    internal inner class SqlData4Xsth(url: String, param: Map<String, String>) : SqlUtils(url, param) {
-        override fun onPostExecute(s: String) {
-            super.onPostExecute(s)
-            Log.i("MainActivity", s)
-
-            val xsth = Utils.getObjectFromJson(s, DatagridBean::class.java)
-            Log.i("MainActivity", xsth.obj.xsthlsh)
-            for (row in xsth.rows) {
-                Log.i("XsthDet", row.spbh)
-            }
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK){
-            var bundler = data.extras
-            var strLsh = bundler!!.getString("result")
-            enterMain(strLsh)
-
-        }
-    }
-
-    private fun enterMain(lsh: String){
-        var intent = Intent(this, CkfhScanShowActivity::class.java)
-        intent.putExtra("lsh",lsh)
-        startActivity(intent)
+        //var openScan = Intent(this, CaptureActivity::class.java)
+        var openScan = Intent(this, CkfhScanShowActivity::class.java)
+        openScan.putExtra("lsh", "180305050260")
+        startActivity(openScan)
     }
 
     private fun ckfh_list_record(){

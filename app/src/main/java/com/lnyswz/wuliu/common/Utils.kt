@@ -4,7 +4,6 @@ import android.content.Context
 import android.widget.Toast
 import com.google.gson.Gson
 import com.lnyswz.wuliu.R
-import java.io.StringBufferInputStream
 import java.lang.reflect.Type
 import java.util.*
 
@@ -14,7 +13,7 @@ import java.util.*
 object Utils {
     val APP_URL = "http://192.168.0.8/lnyswz"
     //val APP_URL = "http://218.25.74.6/lnyswz"
-    //val APP_URL = "http://192.168.0.2:8080"
+    //val APP_URL = "http://192.168.0.2"
 
     //进销存类别的id
     val CATALOG_ID = "aed966ee-e780-4a46-835f-3c6688ec3fd1"
@@ -48,17 +47,24 @@ data class DatagridBean(val total: Long, val obj: ObjBean, val rows: List<ObjBea
 data class ObjBean(val id: String,
                     val userName: String,
                     val did: String,
+                    var bmmc: String,
                     val pid: String,
                     val text: String,
                     val handler: String,
                     val orderNum: String,
-                   val xsthlsh: String,
-                   val bmmc: String,
-                   val khmc: String,
-                   val ckmc: String,
-                   val spbh: String,
-                    val spmc: String,
-                   val spcd: String,
-                   val sppp: String,
-                   val zjldwmc: String,
-                   val zdwsl: String)
+                    val xsthlsh: String,
+                    var createTime: String,
+                    var khmc: String,
+                    var ckmc: String,
+                    var bz: String,
+
+                    val spbh: String,
+                    var spmc: String,
+                    var spcd: String,
+                    var sppp: String,
+                    var sppc: String,
+                    var zjldwmc: String,
+                    var cjldwmc: String,
+                    var zdwsl: String,
+                    var cdwsl: String
+                    )
