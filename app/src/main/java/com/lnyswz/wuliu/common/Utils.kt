@@ -16,8 +16,8 @@ import java.lang.reflect.Type
  * Created by Wenyang on 2018/2/18.
  */
 object Utils {
-    val APP_URL = "http://192.168.0.8/lnyswz"
-    //val APP_URL = "http://218.25.74.6/lnyswz"
+    //val APP_URL = "http://192.168.0.8/lnyswz"
+    val APP_URL = "http://218.25.74.6/lnyswz"
     //val APP_URL = "http://192.168.0.2:8080"
 
     //进销存类别的id
