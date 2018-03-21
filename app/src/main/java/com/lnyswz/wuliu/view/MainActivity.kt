@@ -11,6 +11,7 @@ import com.lnyswz.wuliu.R
 import com.lnyswz.wuliu.common.*
 import android.support.constraint.ConstraintSet
 import com.lnyswz.wuliu.common.SqlUtils
+import com.lnyswz.wuliu.common.zxing.activity.CaptureActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -109,10 +110,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun ckfh_scan_code(){
-        //var openScan = Intent(this, CaptureActivity::class.java)
-        var openScan = Intent(this, CkfhScanShowActivity::class.java)
-        openScan.putExtra("lsh", "180305050260")
-        startActivity(openScan)
+        var intent = Intent(this,CaptureActivity::class.java)
+        intent.putExtra("activity", "ckfh")
+//        var intent = Intent(this,CkfhScanShowActivity::class.java)
+//        intent.putExtra("lsh", "1802050500s05")
+        startActivity(intent)
     }
 
     private fun ckfh_list_record(){

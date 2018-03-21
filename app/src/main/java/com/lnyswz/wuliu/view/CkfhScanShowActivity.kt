@@ -5,11 +5,13 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
+import android.view.View
 import com.lnyswz.wuliu.R
 import com.lnyswz.wuliu.common.*
 import com.lnyswz.wuliu.control.CkfhRecyclerViewAdpter
 import kotlinx.android.synthetic.main.activity_ckfh_scan_show.*
-import java.util.ArrayList
+
 
 class CkfhScanShowActivity : AppCompatActivity() {
 
@@ -39,6 +41,9 @@ class CkfhScanShowActivity : AppCompatActivity() {
             super.onPostExecute(s)
 
             val xsth = Utils.getObjectFromJson(s, DatagridBean::class.java)
+            linearLayout2.visibility = View.VISIBLE
+            ckfh_recyler.visibility = View.VISIBLE
+            ckfh_submit.visibility = View.VISIBLE
 
             ckfh_title.text = getString(R.string.label_title_ckfh)
             ckfh_bm.text = ("${getString(R.string.label_bmmc)}: ${xsth.obj.bmmc}")
@@ -49,8 +54,19 @@ class CkfhScanShowActivity : AppCompatActivity() {
 
             var adapter = CkfhRecyclerViewAdpter(context!!, xsth.rows as ArrayList<ObjBean>)
             ckfh_recyler.adapter = adapter
-            ckfh_recyler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            ckfh_recyler.layoutManager = LinearLayoutManager( context, LinearLayoutManager.VERTICAL, false )
+            ckfh_submit.visibility = View.VISIBLE
+//              ckfh_lsh_no_data.visibility = View.VISIBLE
+//              ckfh_lsh_no_data.text = ("${getString(R.string.label_lsh)}: ${intent.getStringExtra("lsh")} ")
+
+
         }
+
     }
+
+
+
+
+
 }
 

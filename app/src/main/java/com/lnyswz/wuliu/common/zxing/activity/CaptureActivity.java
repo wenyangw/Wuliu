@@ -36,15 +36,19 @@ import android.widget.Toast;
 import com.google.zxing.Result;
 
 import com.lnyswz.wuliu.R;
+import com.lnyswz.wuliu.common.Utils;
 import com.lnyswz.wuliu.common.zxing.camera.CameraManager;
 import com.lnyswz.wuliu.common.zxing.decode.DecodeThread;
 import com.lnyswz.wuliu.common.zxing.utils.BeepManager;
 import com.lnyswz.wuliu.common.zxing.utils.CaptureActivityHandler;
 import com.lnyswz.wuliu.common.zxing.utils.InactivityTimer;
 import com.lnyswz.wuliu.view.CkfhScanShowActivity;
+import com.lnyswz.wuliu.view.LoginActivity;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This activity opens the camera and does the actual scanning on a background
@@ -185,28 +189,23 @@ public final class CaptureActivity extends AppCompatActivity implements SurfaceH
      */
     public void handleDecode(Result rawResult, Bundle bundle) {
         inactivityTimer.onActivity();
-//        playBeepSoundAndVibrate();
-
-
-        String resultString = rawResult.getText();
-//FIXME
-        if (resultString.equals("")) {
-            Toast.makeText(CaptureActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
-        }else {
-            Intent intent = new Intent(CaptureActivity.this, CkfhScanShowActivity.class);
-            intent.putExtra("lsh", resultString.substring(0, 12));
-            startActivity(intent);
+        String resultString = Utils.INSTANCE.checkScan(rawResult.getText(),CaptureActivity.this);
+        if(resultString.equals("")){
+            continuePreview();
+        }else{
+            startActivity(Utils.INSTANCE.scanIntent(CaptureActivity.this,resultString, getIntent()));
+            CaptureActivity.this.finish();
         }
-        CaptureActivity.this.finish();
+    }
 
-//        beepManager.playBeepSoundAndVibrate();
-//        Intent resultIntent = new Intent();
-//        bundle.putInt("width", mCropRect.width());
-//        bundle.putInt("height", mCropRect.height());
-//        bundle.putString("result", rawResult.getText());
-//        resultIntent.putExtras(bundle);
-//        this.setResult(RESULT_OK, resultIntent);
-//        CaptureActivity.this.finish();
+    //循环扫码
+    public void continuePreview() {
+        SurfaceView surfaceView =(SurfaceView)findViewById(R.id.capture_preview);
+        SurfaceHolder surfaceHolder = surfaceView.getHolder();
+        initCamera(surfaceHolder);
+        if (handler != null) {
+            handler.restartPreviewAndDecode();
+        }
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {
