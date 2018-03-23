@@ -12,8 +12,14 @@
     <string name="label_kh">客户</string>
     <string name="label_ck">仓库</string>
 
+    <string name="btn_submit">提交</string>
+
     <string name="label_title_ckfh">出库复核单</string>
 
+
+    <string name="scan_hint">您扫描条码不正确，请重新扫码！</string>
+
+    <string name="scan_hint_no_data">该流水号不存在，请重新扫描！</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

@@ -15,32 +15,32 @@
      >
 
      <TextView
-         android:id="@+id/ckfh_show_spbh"
+         android:id="@+id/tv_ckfh_show_spbh"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content" />
 
      <TextView
-         android:id="@+id/ckfh_show_spmc"
+         android:id="@+id/tv_ckfh_show_spmc"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content" />
 
      <TextView
-         android:id="@+id/ckfh_show_sppp"
+         android:id="@+id/tv_ckfh_show_sppp"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content" />
 
      <TextView
-         android:id="@+id/ckfh_show_spcd"
+         android:id="@+id/tv_ckfh_show_spcd"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"/>
 
      <TextView
-         android:id="@+id/ckfh_show_zjldw"
+         android:id="@+id/tv_ckfh_show_zjldw"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"/>
 
      <TextView
-         android:id="@+id/ckfh_show_zjldwsl"
+         android:id="@+id/tv_ckfh_show_zjldwsl"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content" />
  </LinearLayout>

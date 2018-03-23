@@ -34,12 +34,12 @@ class CkfhRecyclerViewAdpter(var context: Context, var datas: ArrayList<ObjBean>
 
     inner class ViewHodler(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-        var ckfh_spbh: TextView = itemView.findViewById(R.id.ckfh_show_spbh)
-        var ckfh_spbmc: TextView = itemView.findViewById(R.id.ckfh_show_spmc)
-        var ckfh_sppp: TextView = itemView.findViewById(R.id.ckfh_show_sppp)
-        var ckfh_spcd: TextView = itemView.findViewById(R.id.ckfh_show_spcd)
-        var ckfh_zdw: TextView = itemView.findViewById(R.id.ckfh_show_zjldw)
-        var ckfh_zdwsl: TextView = itemView.findViewById(R.id.ckfh_show_zjldwsl)
+        var ckfh_spbh: TextView = itemView.findViewById(R.id.tv_ckfh_show_spbh)
+        var ckfh_spbmc: TextView = itemView.findViewById(R.id.tv_ckfh_show_spmc)
+        var ckfh_sppp: TextView = itemView.findViewById(R.id.tv_ckfh_show_sppp)
+        var ckfh_spcd: TextView = itemView.findViewById(R.id.tv_ckfh_show_spcd)
+        var ckfh_zdw: TextView = itemView.findViewById(R.id.tv_ckfh_show_zjldw)
+        var ckfh_zdwsl: TextView = itemView.findViewById(R.id.tv_ckfh_show_zjldwsl)
     }
 
 }

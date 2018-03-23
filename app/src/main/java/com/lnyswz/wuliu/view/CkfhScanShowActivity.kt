@@ -39,26 +39,63 @@ class CkfhScanShowActivity : AppCompatActivity() {
     internal inner class SqlData4Xsth(url: String, param: Map<String, String>) : SqlUtils(url, param) {
         override fun onPostExecute(s: String) {
             super.onPostExecute(s)
-
             val xsth = Utils.getObjectFromJson(s, DatagridBean::class.java)
-            linearLayout2.visibility = View.VISIBLE
-            ckfh_recyler.visibility = View.VISIBLE
-            ckfh_submit.visibility = View.VISIBLE
+            Log.i("dd",s)
+            Log.i("dd",xsth.total.toString())
 
-            ckfh_title.text = getString(R.string.label_title_ckfh)
-            ckfh_bm.text = ("${getString(R.string.label_bmmc)}: ${xsth.obj.bmmc}")
-            ckfh_lsh.text = ("${getString(R.string.label_lsh)}: ${xsth.obj.xsthlsh}")
-            ckfh_date.text = ("${getString(R.string.label_date)}: ${xsth.obj.createTime}")
-            ckfh_kh.text = ("${getString(R.string.label_kh)}: ${xsth.obj.khmc}")
-            ckfh_ck.text = ("${getString(R.string.label_ck)}: ${xsth.obj.ckmc}")
+            when(xsth.total > 0){
+                true -> {
+                    showCkfhDate(true)
 
-            var adapter = CkfhRecyclerViewAdpter(context!!, xsth.rows as ArrayList<ObjBean>)
-            ckfh_recyler.adapter = adapter
-            ckfh_recyler.layoutManager = LinearLayoutManager( context, LinearLayoutManager.VERTICAL, false )
-            ckfh_submit.visibility = View.VISIBLE
-//              ckfh_lsh_no_data.visibility = View.VISIBLE
-//              ckfh_lsh_no_data.text = ("${getString(R.string.label_lsh)}: ${intent.getStringExtra("lsh")} ")
+                    tv_ckfh_title.text = getString(R.string.label_title_ckfh)
+                    tv_ckfh_bm.text = ("${getString(R.string.label_bmmc)}: ${xsth.obj.bmmc} ")
+                    tv_ckfh_lsh.text = ("${getString(R.string.label_lsh)}: ${xsth.obj.xsthlsh} ")
+                    tv_ckfh_date.text = ("${getString(R.string.label_date)}: ${xsth.obj.createTime} ")
+                    tv_ckfh_kh.text = ("${getString(R.string.label_kh)}: ${xsth.obj.khmc} ")
+                    tv_ckfh_ck.text = ("${getString(R.string.label_ck)}: ${xsth.obj.ckmc} ")
+                    btn_ckfh_submit.text = ("${getString(R.string.btn_submit)}")
 
+//                    btn_ckfh_submit.setOnClickListener( ckfh_submit() )
+
+                    var adapter = CkfhRecyclerViewAdpter(context!!, xsth.rows as ArrayList<ObjBean>)
+                    recy_ckfh_recyler.adapter = adapter
+                    recy_ckfh_recyler.layoutManager = LinearLayoutManager( context, LinearLayoutManager.VERTICAL, false )
+                }
+                else -> {
+                    showCkfhDate(false)
+                    tv_ckfh_lsh_no_data.text = ("${getString(R.string.label_lsh)}: ${intent.getStringExtra("lsh")} ")
+                    tv_ckfh_hint_no_data.text = ("${getString(R.string.scan_hint_no_data)}")
+                }
+             }
+
+
+
+        }
+
+//        fun ckfh_submit(): View.OnClickListener? {
+//            val address = Utils.APP_URL + "/jxc/xsthAction!getXsth.action"
+//            val params = mapOf("xsthlsh=" to intent.getStringExtra("lsh"))
+//        }
+
+        fun showCkfhDate (bol: Boolean ){
+
+            when(bol){
+                true -> {
+                    tv_ckfh_title.visibility = View.VISIBLE
+                    tv_ckfh_lsh.visibility = View.VISIBLE
+                    tv_ckfh_bm.visibility = View.VISIBLE
+                    tv_ckfh_date.visibility = View.VISIBLE
+                    tv_ckfh_kh.visibility = View.VISIBLE
+                    tv_ckfh_ck.visibility = View.VISIBLE
+                    recy_ckfh_recyler.visibility = View.VISIBLE
+                    btn_ckfh_submit.visibility = View.VISIBLE
+                }
+                else ->{
+                    tv_ckfh_lsh_no_data.visibility = View.VISIBLE
+                    tv_ckfh_hint_no_data.visibility = View.VISIBLE
+                }
+
+            }
 
         }
 

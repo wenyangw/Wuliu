@@ -23,7 +23,9 @@
         </activity>
         <activity android:name=".view.MainActivity" />
         <activity android:name=".common.zxing.activity.CaptureActivity" />
-        <activity android:name=".view.CkfhScanShowActivity"></activity>
+        <activity android:name=".view.CkfhScanShowActivity" />
+        <activity android:name=".view.CkfhListActivity" />
+        <activity android:name=".view.CkfhDetailActivity"></activity>
     </application>
 
 </manifest>

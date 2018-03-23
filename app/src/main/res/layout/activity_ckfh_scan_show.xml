@@ -8,116 +8,142 @@
     tools:context="com.lnyswz.wuliu.view.CkfhScanShowActivity">
 
 
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="263dp"
-        android:layout_height="177dp"
+    <TextView
+        android:id="@+id/tv_ckfh_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.638"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081"
+        app:layout_constraintVertical_bias="0.016"
         android:visibility="gone"
-        >
+        />
 
+    <TextView
+        android:id="@+id/tv_ckfh_lsh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_ckfh_bm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toEndOf="@+id/tv_ckfh_bm"
+        app:layout_constraintTop_toTopOf="@+id/tv_ckfh_bm"
+        app:layout_constraintVertical_bias="0.0"
+        android:visibility="gone"
+        />
 
+    <TextView
+        android:id="@+id/tv_ckfh_bm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="252dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_title"
+        app:layout_constraintVertical_bias="0.027"
+        android:visibility="gone"
+        />
 
-        <TextView
-            android:id="@+id/ckfh_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_ckfh_ck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_ckfh_bm"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_bm"
+        android:visibility="gone"
+        />
 
-        <TextView
-            android:id="@+id/ckfh_lsh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_ckfh_kh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_ckfh_ck"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_ck"
+        android:visibility="gone"
+        />
 
-        <TextView
-            android:id="@+id/ckfh_bm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_ckfh_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/tv_ckfh_lsh"
+        app:layout_constraintTop_toTopOf="@+id/tv_ckfh_ck"
+        android:visibility="gone"
+        />
 
-        <TextView
-            android:id="@+id/ckfh_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/ckfh_kh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/ckfh_ck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/ckfh_recyler"
-        android:layout_width="255dp"
-        android:layout_height="210dp"
+        android:id="@+id/recy_ckfh_recyler"
+        android:layout_width="357dp"
+        android:layout_height="264dp"
+        android:layout_marginBottom="124dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.161"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_kh"
+        app:layout_constraintVertical_bias="0.0"
         android:visibility="gone"
         >
 
     </android.support.v7.widget.RecyclerView>
 
     <Button
-        android:id="@+id/ckfh_submit"
+        android:id="@+id/btn_ckfh_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.575"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.824"
+        app:layout_constraintVertical_bias="0.856"
         android:visibility="gone"
         />
 
     <TextView
-        android:id="@+id/ckfh_lsh_no_data"
+        android:id="@+id/tv_ckfh_lsh_no_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.237"
+        app:layout_constraintHorizontal_bias="0.322"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.432"
+        app:layout_constraintVertical_bias="0.465"
         android:visibility="gone"
         />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_ckfh_hint_no_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.59"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_ckfh_lsh_no_data"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_lsh_no_data"
+        app:layout_constraintVertical_bias="0.074"
         android:visibility="gone"
         />
 </android.support.constraint.ConstraintLayout>

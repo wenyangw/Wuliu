@@ -48,9 +48,7 @@ class MainActivity : AppCompatActivity() {
             super.onPostExecute(s)
             val menus = Utils.getListFromJson<List<ObjBean>>(s, object : TypeToken<List<ObjBean>>() {}.type)
 
-            for (menu in menus) if(menu.pid != null) {
-                getButtons(menu.id)
-            }
+            menus.filter {it.pid != null}.map {getButtons(it.id)}
         }
     }
 
@@ -110,7 +108,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun ckfh_scan_code(){
-        var intent = Intent(this,CaptureActivity::class.java)
+        var intent = Intent(this, CaptureActivity::class.java)
         intent.putExtra("activity", "ckfh")
 //        var intent = Intent(this,CkfhScanShowActivity::class.java)
 //        intent.putExtra("lsh", "1802050500s05")
@@ -118,8 +116,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun ckfh_list_record(){
-        Log.i("Tag", "ckfh_list_record()")
-    }
+        var intent = Intent(this,CkfhListActivity::class.java)
+        intent.putExtra("lsh", "180205050004")
+        startActivity(intent)
 
+    }
 
 }
