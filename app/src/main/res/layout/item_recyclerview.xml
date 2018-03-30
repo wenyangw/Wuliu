@@ -2,15 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFE1FF"
+    android:background="@drawable/list5"
     android:padding="5dp"
+
     >
  <LinearLayout
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
      android:orientation="vertical"
-     android:background="#B2DFEE"
-     android:padding="10dp"
+
 
      >
 

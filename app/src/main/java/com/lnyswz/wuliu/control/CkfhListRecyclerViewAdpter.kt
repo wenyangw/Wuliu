@@ -1,6 +1,8 @@
 package com.lnyswz.wuliu.control
 
 import android.content.Context
+import android.content.Intent
+
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -8,17 +10,25 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.lnyswz.wuliu.R
 import com.lnyswz.wuliu.common.ObjBean
-import com.lnyswz.wuliu.common.Utils
+import com.lnyswz.wuliu.view.CkfhDetailActivity
 
-class CkfhListRecyclerViewAdpter(var context: Context, var datas: List<ObjBean>) : RecyclerView.Adapter<CkfhListRecyclerViewAdpter.ViewHodler>(){
+class CkfhListRecyclerViewAdpter(var context: Context, var datas: List<ObjBean>,var intent: Intent) : RecyclerView.Adapter<CkfhListRecyclerViewAdpter.ViewHodler>() {
     override fun onBindViewHolder(holder: ViewHodler?, position: Int) {
         var data = datas.get(position)
-        holder!!.ckfh_kh.setOnClickListener{Utils.toast(context,"ddd") }
-
         holder!!.ckfh_lsh.text = data.xsthlsh
         holder!!.ckfh_kh.text = data.khmc
 
+        holder!!.itemView.setOnClickListener{
+
+            var inet = Intent(context,CkfhDetailActivity::class.java)
+            inet!!.putExtra("lsh", data.xsthlsh)
+            inet!!.putExtra("type",intent.getStringExtra("type"))
+            inet.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(inet)
+        }
+
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHodler {
         var itemView = View.inflate(context, R.layout.item_recyclerview_ckfh_list,null)

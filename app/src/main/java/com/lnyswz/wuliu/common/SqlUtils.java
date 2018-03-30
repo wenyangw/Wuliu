@@ -39,8 +39,8 @@ public class SqlUtils extends AsyncTask<Void, Integer, String> {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             //设置请求方式,请求超时信息
             conn.setRequestMethod("POST");
-            conn.setReadTimeout(10000);
-            conn.setConnectTimeout(10000);
+            conn.setReadTimeout(5000);
+            conn.setConnectTimeout(5000);
             //设置运行输入,输出:
             conn.setDoOutput(true);
             conn.setDoInput(true);

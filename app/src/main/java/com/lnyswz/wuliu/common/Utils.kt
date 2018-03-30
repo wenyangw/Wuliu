@@ -55,17 +55,11 @@ object Utils {
 
 
     fun scanIntent(context: Context, scanResult: String, intentActivitySign: Intent ): Intent{
-        var sign = intentActivitySign.getStringExtra("activity")
 
-        var intent = Intent()
-        if( sign.equals("ckfh") ){
-            intent = Intent(context,CkfhScanShowActivity::class.java )
-            intent.putExtra("lsh", scanResult)
-        }else if( sign.equals("login") ){
-            intent = Intent(context,LoginActivity::class.java )
-            intent.putExtra("lsh", scanResult)
-        }
-
+        var intent = Intent(context,CkfhScanShowActivity::class.java )
+        intent.putExtra("lsh", scanResult)
+        intent.putExtra("type",intentActivitySign.getStringExtra("type"))
+        intent.putExtra("createId",intentActivitySign.getStringExtra("createId"))
         return intent
     }
 
@@ -82,7 +76,7 @@ object Utils {
 
 data class JsonBean(val success: Boolean, val msg: String, val obj: ObjBean)
 
-data class DatagridBean(val total: Long, val obj: ObjBean, val rows: List<ObjBean>)
+data class DatagridBean(val total: Long,val msg: String, val obj: ObjBean, val rows: List<ObjBean>)
 
 data class ObjBean(val id: String,
                     val userName: String,
