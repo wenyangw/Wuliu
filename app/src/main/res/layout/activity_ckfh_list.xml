@@ -6,93 +6,122 @@
     android:layout_height="match_parent"
     tools:context="com.lnyswz.wuliu.view.CkfhListActivity">
 
+    <TextView
+        android:id="@+id/tv_ckfh_list_createTime_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/label_starTime"
+        android:textSize="21dp"
+
+
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tv_ckfh_list_endTime_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/label_endTime"
+        android:textSize="21dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_ckfh_list_createTime_label"
+        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintStart_toStartOf="@+id/tv_ckfh_list_createTime_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_list_createTime_label"
+        app:layout_constraintVertical_bias="0.004" />
+
 
     <TextView
         android:id="@+id/tv_ckfh_list_createTime"
-        android:layout_width="102dp"
-        android:layout_height="18dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:inputType="date"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.128"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04"
-       />
+        android:textSize="21dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_ckfh_list_createTime_label"
+        app:layout_constraintStart_toEndOf="@+id/tv_ckfh_list_createTime_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_ckfh_list_createTime_label" />
 
     <TextView
         android:id="@+id/tv_ckfh_list_endTime"
-        android:layout_width="102dp"
-        android:layout_height="18dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="199dp"
+        android:layout_height="wrap_content"
         android:inputType="date"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_ckfh_list_createTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.793"
-        app:layout_constraintStart_toEndOf="@+id/tv_ckfh_list_createTime"
-        app:layout_constraintTop_toTopOf="@+id/tv_ckfh_list_createTime"
-        app:layout_constraintVertical_bias="1.0" />
+        android:textSize="21dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_ckfh_list_endTime_label"
+        app:layout_constraintEnd_toEndOf="@+id/tv_ckfh_list_createTime"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_ckfh_list_createTime_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_ckfh_list_endTime_label"
+        app:layout_constraintVertical_bias="0.155" />
 
     <EditText
         android:id="@+id/et_ckfh_list_khmc"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="客户"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_ckfh_list_endTime"
-        app:layout_constraintStart_toStartOf="@+id/tv_ckfh_list_createTime"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_list_createTime" />
+        android:layout_marginTop="16dp"
+
+        android:ems="10"
+        android:hint="客户"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_ckfh_list_endTime_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_list_endTime" />
 
     <Button
         android:id="@+id/btn_ckfh_list_select"
-        android:layout_width="75dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="查询"
+        android:background="@drawable/button_shape_normal"
+        android:text="@string/btn_select"
+        android:textColor="@color/colorWhiteText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_ckfh_list_khmc" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recy_ckfh_list"
-        android:layout_width="304dp"
-        android:layout_height="322dp"
+        android:layout_width="match_parent"
+        android:layout_height="241dp"
 
-        android:layout_marginBottom="24dp"
+        android:visibility="gone"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_ckfh_list_select"
-        app:layout_constraintVertical_bias="0.684">
+       >
 
     </android.support.v7.widget.RecyclerView>
 
     <DatePicker
         android:id="@+id/ckfh_list_datePicker"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="396dp"
         android:layout_marginBottom="8dp"
 
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"
-        />
-
+        app:layout_constraintVertical_bias="1.0" />
 
 
 

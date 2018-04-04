@@ -17,6 +17,10 @@ import com.lnyswz.wuliu.control.CkfhListRecyclerViewAdpter
 import kotlinx.android.synthetic.main.activity_ckfh_list.*
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
+import android.content.Context.INPUT_METHOD_SERVICE
+import android.support.v7.widget.DividerItemDecoration
+import kotlinx.android.synthetic.main.activity_ckfh_scan_show.*
+
 
 class CkfhListActivity : AppCompatActivity(){
 
@@ -36,10 +40,10 @@ class CkfhListActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ckfh_list)
         context = this
-//        recy_ckfh_list.visibility = View.GONE
         crateTimeInto()
         endTimeInto()
         btn_ckfh_list_select.setOnClickListener {
+
             getCkfhData()
         }
         getCkfhData()
@@ -68,11 +72,14 @@ class CkfhListActivity : AppCompatActivity(){
 
     private fun timeManage(tv: TextView,year: Int, month: Int, day: Int,par: String) {
         ckfh_list_datePicker.visibility = View.VISIBLE
+        btn_ckfh_list_select.visibility = View.GONE
         recy_ckfh_list.visibility = View.GONE
         ckfh_list_datePicker.init(year, month - 1, day)
         { datePicker, y, m, d ->
+
             datePicker.visibility = View.GONE
             recy_ckfh_list.visibility = View.VISIBLE
+            btn_ckfh_list_select.visibility = View.VISIBLE
             tv.text = "${y}-${m + 1}-${d}"
             when (par) {
                 "createTime" -> {
@@ -92,6 +99,9 @@ class CkfhListActivity : AppCompatActivity(){
 
 
     fun getCkfhData(){
+
+        val inputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(et_ckfh_list_khmc.getWindowToken(), 0)
         val address = Utils.APP_URL + "/jxc/xsthAction!getXsthOutList.action"
         val params = mapOf("type=" to intent.getStringExtra("type"),
                 "createId=" to intent.getStringExtra("createId"),
@@ -107,10 +117,15 @@ class CkfhListActivity : AppCompatActivity(){
 
         override fun onPostExecute(s: String) {
             super.onPostExecute(s)
+
+
             val xsths = Utils.getListFromJson<List<ObjBean>>(s, object : TypeToken<List<ObjBean>>() {}.type)
+            recy_ckfh_list.visibility = View.VISIBLE
             var adapter = CkfhListRecyclerViewAdpter(context!!, xsths,intent)
             recy_ckfh_list.adapter = adapter
             recy_ckfh_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            recy_ckfh_list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+
         }
     }
 

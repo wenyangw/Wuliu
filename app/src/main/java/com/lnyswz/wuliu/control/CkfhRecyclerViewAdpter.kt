@@ -16,29 +16,29 @@ class CkfhRecyclerViewAdpter(var context: Context, var datas: ArrayList<ObjBean>
 
     override fun onBindViewHolder(holder: ViewHodler?, position: Int) {
             var data = datas.get(position)
-            holder!!.ckfh_spbh.text = data.spbh
-            holder!!.ckfh_spbmc.text = data.spmc
-            holder!!.ckfh_spcd.text = data.spcd
-            holder!!.ckfh_sppp.text = data.sppp
-            holder!!.ckfh_zdw.text = data.zjldwmc
-            holder!!.ckfh_zdwsl.text = data.zdwsl
+
+            holder!!.ckfh_spbh.text =  "${context.getString(R.string.label_spbh)}:${data.spbh}"
+            holder!!.ckfh_spmc.text =  "${context.getString(R.string.label_spmc)}:${data.spmc}"
+            holder!!.ckfh_sppp.text =  "${context.getString(R.string.label_sppp)}:${data.sppp}"
+            holder!!.ckfh_spcd.text =  "${context.getString(R.string.label_spcd)}:${data.spcd}"
+//            holder!!.ckfh_zdw.text =  "${context.getString(R.string.label_zjldwmc)}:${data.zjldwmc}"
+            holder!!.ckfh_zdwsl.text =  "${context.getString(R.string.label_zjldsl)}:${data.zdwsl}(${data.zjldwmc.trim()})"
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHodler {
        var itemView = View.inflate(context, R.layout.item_recyclerview,null)
         return ViewHodler(itemView)
-
     }
 
 
     inner class ViewHodler(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         var ckfh_spbh: TextView = itemView.findViewById(R.id.tv_ckfh_show_spbh)
-        var ckfh_spbmc: TextView = itemView.findViewById(R.id.tv_ckfh_show_spmc)
+        var ckfh_spmc: TextView = itemView.findViewById(R.id.tv_ckfh_show_spmc)
         var ckfh_sppp: TextView = itemView.findViewById(R.id.tv_ckfh_show_sppp)
         var ckfh_spcd: TextView = itemView.findViewById(R.id.tv_ckfh_show_spcd)
-        var ckfh_zdw: TextView = itemView.findViewById(R.id.tv_ckfh_show_zjldw)
+
         var ckfh_zdwsl: TextView = itemView.findViewById(R.id.tv_ckfh_show_zjldwsl)
     }
 

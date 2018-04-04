@@ -4,17 +4,31 @@
     <string name="text_name">用户名</string>
     <string name="text_password">密码</string>
 
+
     <string name="label_bmmc">部门</string>
     <string name="label_date">创建时间</string>
     <string name="label_lsh">流水号</string>
     <string name="label_kh">客户</string>
     <string name="label_ck">仓库</string>
+    <string name="label_spmc">商品</string>
+    <string name="label_spbh">编号</string>
+    <string name="label_sppp">品牌</string>
+    <string name="label_spcd">产地</string>
+    <string name="label_zjldwmc">单位</string>
+    <string name="label_zjldsl">数量</string>
 
-    <string name="btn_submit">提交</string>
+
+    <string name="label_time">时间</string>
+    <string name="label_starTime">起始时间：</string>
+    <string name="label_endTime">结束时间：</string>
+    <string name="btn_select">查&#160;&#160;&#160;&#160;询</string>
+    <string name="btn_submit">提&#160;&#160;&#160;&#160;交</string>
+
 
     <string name="label_title_ckfh">出库复核单</string>
 
 
     <string name="scan_hint">请输入12位流水号！</string>
+
     <string name="scan_no_lsh">该流水号不正确！</string>
 </resources>

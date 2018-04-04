@@ -26,6 +26,7 @@ object Utils {
 
     fun toast(context: Context, message: CharSequence) = Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 
+
     /**
      * json="[{}, {}, {}]"
      * return List<T>
@@ -43,6 +44,11 @@ object Utils {
     fun <T> getObjectFromJson(key: String, cls: Class<T>): T {
         return Gson().fromJson<T>(key, cls)
     }
+
+
+
+
+
 
     fun checkScan(resultString: String,context: Context): String {
         var r = ""

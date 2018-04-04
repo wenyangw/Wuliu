@@ -7,13 +7,10 @@
     tools:context="com.lnyswz.wuliu.view.CkfhDetailActivity">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recy_ckfh_detail_show"
-        android:layout_width="385dp"
-        android:layout_height="509dp"
+        android:layout_width="320dp"
+        android:layout_height="495dp"
 
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

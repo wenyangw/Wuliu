@@ -10,27 +10,24 @@
     <EditText
         android:id="@+id/et_name"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
-        android:textColor="@color/colorLoginText"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
         android:hint="@string/text_name"
         android:inputType="textPersonName"
+        android:textColor="@color/colorLoginText"
         android:textColorHint="@color/colorLoginHint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintVertical_bias="0.221" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="15dp"
         android:hint="@string/text_password"
         android:inputType="textPassword"
         android:textColor="@color/colorLoginText"
@@ -46,18 +43,16 @@
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
 
-        android:text="@string/text_login"
-        android:textSize="22dp"
         android:background="@drawable/button_shape_normal"
+        android:text="@string/text_login"
         android:textColor="@color/colorWhiteText"
+        android:textSize="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/et_password"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@id/et_password"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintVertical_bias="0.578" />
 
 </android.support.constraint.ConstraintLayout>

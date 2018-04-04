@@ -13,10 +13,11 @@ import com.lnyswz.wuliu.common.ObjBean
 class CkfhDetailRecycleViewAdpter(var context: Context, var datas:  List<ObjBean> ): RecyclerView.Adapter<CkfhDetailRecycleViewAdpter.ViewHodler>(){
     override fun onBindViewHolder(holder: ViewHodler?, position: Int) {
         var data = datas.get(position)
-        holder!!.ckfh_spbh.text = data.spbh
-        holder!!.ckfh_spmc.text = data.spmc
-        holder!!.ckfh_sppp.text = data.sppp
-        holder!!.ckfh_spcd.text = data.spcd
+        holder!!.ckfh_spbh.text =  "${context.getString(R.string.label_spbh)}:${data.spbh}"
+        holder!!.ckfh_spmc.text =  "${context.getString(R.string.label_spmc)}:${data.spmc}"
+        holder!!.ckfh_sppp.text =  "${context.getString(R.string.label_sppp)}:${data.sppp}"
+        holder!!.ckfh_spcd.text = "${context.getString(R.string.label_spcd)}:${data.spcd}"
+        holder!!.ckfh_zdwsl.text = "${context.getString(R.string.label_zjldsl)}:${data.zdwsl}(${data.zjldwmc.trim()})"
     }
 
     override fun getItemCount(): Int {
@@ -24,7 +25,7 @@ class CkfhDetailRecycleViewAdpter(var context: Context, var datas:  List<ObjBean
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHodler {
-        Log.i("dd","34567")
+
         var itemView = View.inflate(context, R.layout.item_recyclerview_ckfh_detial,null)
         return  ViewHodler(itemView)
     }
@@ -32,7 +33,9 @@ class CkfhDetailRecycleViewAdpter(var context: Context, var datas:  List<ObjBean
     inner class ViewHodler(itemView: View):RecyclerView.ViewHolder(itemView){
         var ckfh_spbh: TextView = itemView.findViewById(R.id.tv_ckfh_detail_spbh)
         var ckfh_spmc: TextView = itemView.findViewById(R.id.tv_ckfh_detail_spmc)
-        var ckfh_spcd: TextView = itemView.findViewById(R.id.tv_ckfh_detail_spcd)
         var ckfh_sppp: TextView = itemView.findViewById(R.id.tv_ckfh_detail_sppp)
+        var ckfh_spcd: TextView = itemView.findViewById(R.id.tv_ckfh_detail_spcd)
+//        var ckfh_zdwmc: TextView = itemView.findViewById(R.id.tv_ckfh_detail_zjldw)
+        var ckfh_zdwsl: TextView = itemView.findViewById(R.id.tv_ckfh_detail_zjldwsl)
     }
 }

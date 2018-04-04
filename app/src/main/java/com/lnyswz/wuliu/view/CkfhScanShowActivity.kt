@@ -3,7 +3,9 @@ package com.lnyswz.wuliu.view
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 
 import android.view.View
 import com.lnyswz.wuliu.R
@@ -15,6 +17,10 @@ import android.text.TextWatcher
 import android.view.inputmethod.InputMethodManager
 import android.text.method.NumberKeyListener
 import android.view.KeyEvent
+import java.text.SimpleDateFormat
+import android.support.v7.widget.DividerItemDecoration
+
+
 
 
 class CkfhScanShowActivity : AppCompatActivity() {
@@ -55,7 +61,7 @@ class CkfhScanShowActivity : AppCompatActivity() {
                 }
                 else -> {
                     showCkfhDate(false)
-                    tv_ckfh_scan_msg.text = xsth.msg
+                    tv_ckfh_scan_msg.text = "${xsth.msg}\n"
 
                 }
             }
@@ -98,9 +104,9 @@ class CkfhScanShowActivity : AppCompatActivity() {
                 tv_ckfh_title.visibility = View.VISIBLE
                 tv_ckfh_lsh.visibility = View.VISIBLE
                 tv_ckfh_bm.visibility = View.VISIBLE
-                tv_ckfh_date.visibility = View.VISIBLE
+
                 tv_ckfh_kh.visibility = View.VISIBLE
-                tv_ckfh_ck.visibility = View.VISIBLE
+             
                 recy_ckfh_recyler.visibility = View.VISIBLE
                 btn_ckfh_submit.visibility = View.VISIBLE
             }
@@ -119,15 +125,19 @@ class CkfhScanShowActivity : AppCompatActivity() {
         var adapter = CkfhRecyclerViewAdpter(context!!, xsth.rows as ArrayList<ObjBean>)
         recy_ckfh_recyler.adapter = adapter
         recy_ckfh_recyler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recy_ckfh_recyler.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+
     }
 
+
     private fun putTVText(xsth: DatagridBean) {
+
+
+
         tv_ckfh_title.text = getString(R.string.label_title_ckfh)
         tv_ckfh_bm.text = "${getString(R.string.label_bmmc)}: ${xsth.obj.bmmc} "
         tv_ckfh_lsh.text = "${getString(R.string.label_lsh)}: ${xsth.obj.xsthlsh} "
-        tv_ckfh_date.text = "${getString(R.string.label_date)}: ${xsth.obj.createTime} "
         tv_ckfh_kh.text = "${getString(R.string.label_kh)}: ${xsth.obj.khmc} "
-        tv_ckfh_ck.text = "${getString(R.string.label_ck)}: ${xsth.obj.ckmc} "
         btn_ckfh_submit.text = ("${getString(R.string.btn_submit)}")
     }
 

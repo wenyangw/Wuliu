@@ -15,8 +15,9 @@ import com.lnyswz.wuliu.view.CkfhDetailActivity
 class CkfhListRecyclerViewAdpter(var context: Context, var datas: List<ObjBean>,var intent: Intent) : RecyclerView.Adapter<CkfhListRecyclerViewAdpter.ViewHodler>() {
     override fun onBindViewHolder(holder: ViewHodler?, position: Int) {
         var data = datas.get(position)
-        holder!!.ckfh_lsh.text = data.xsthlsh
-        holder!!.ckfh_kh.text = data.khmc
+        holder!!.ckfh_lsh.text ="${context.getString(R.string.label_lsh)}:${data.xsthlsh}"
+        holder!!.ckfh_kh.text = "${context.getString(R.string.label_kh)}:${data.khmc}"
+        holder!!.ckfh_createTime.text =  "${context.getString(R.string.label_time)}:${data.createTime}"
 
         holder!!.itemView.setOnClickListener{
 
@@ -44,6 +45,7 @@ class CkfhListRecyclerViewAdpter(var context: Context, var datas: List<ObjBean>,
 
         var ckfh_lsh: TextView = itemView.findViewById(R.id.tv_ckfh_list_lsh)
         var ckfh_kh: TextView = itemView.findViewById(R.id.tv_ckfh_list_kh)
+        var ckfh_createTime: TextView = itemView.findViewById(R.id.tv_ckfh_list_createTime)
     }
 
 }
