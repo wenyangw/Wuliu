@@ -7,7 +7,7 @@
 
     <string name="label_bmmc">部门</string>
     <string name="label_date">创建时间</string>
-    <string name="label_lsh">流水号</string>
+    <string name="label_lsh">单号</string>
     <string name="label_kh">客户</string>
     <string name="label_ck">仓库</string>
     <string name="label_spmc">商品</string>
@@ -31,4 +31,20 @@
     <string name="scan_hint">请输入12位流水号！</string>
 
     <string name="scan_no_lsh">该流水号不正确！</string>
+
+    <string name="ckfh_list_no_list">该条件没有数据！</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_adddd">Adddd</string>
 </resources>

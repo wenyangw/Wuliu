@@ -10,14 +10,10 @@
         android:id="@+id/tv_ckfh_list_createTime_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/label_starTime"
         android:textSize="21dp"
-
-
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
@@ -26,25 +22,20 @@
         android:id="@+id/tv_ckfh_list_endTime_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/label_endTime"
         android:textSize="21dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tv_ckfh_list_createTime_label"
-        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="@+id/tv_ckfh_list_createTime_label"
         app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_list_createTime_label"
-        app:layout_constraintVertical_bias="0.004" />
+ />
 
 
     <TextView
         android:id="@+id/tv_ckfh_list_createTime"
-        android:layout_width="0dp"
+        android:layout_width="199dp"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:textSize="21dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_ckfh_list_createTime_label"
         app:layout_constraintStart_toEndOf="@+id/tv_ckfh_list_createTime_label"
         app:layout_constraintTop_toTopOf="@+id/tv_ckfh_list_createTime_label" />
 
@@ -54,26 +45,16 @@
         android:layout_height="wrap_content"
         android:inputType="date"
         android:textSize="21dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_ckfh_list_endTime_label"
-        app:layout_constraintEnd_toEndOf="@+id/tv_ckfh_list_createTime"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tv_ckfh_list_createTime_label"
-        app:layout_constraintTop_toTopOf="@+id/tv_ckfh_list_endTime_label"
-        app:layout_constraintVertical_bias="0.155" />
+        app:layout_constraintTop_toTopOf="@+id/tv_ckfh_list_endTime_label" />
 
     <EditText
         android:id="@+id/et_ckfh_list_khmc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-
-        android:ems="10"
+        android:textSize="21dp"
         android:hint="客户"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tv_ckfh_list_endTime_label"
         app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_list_endTime" />
 
@@ -88,22 +69,18 @@
         android:text="@string/btn_select"
         android:textColor="@color/colorWhiteText"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_ckfh_list_khmc" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recy_ckfh_list"
         android:layout_width="match_parent"
-        android:layout_height="241dp"
-
+        android:layout_height="300dp"
         android:visibility="gone"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_ckfh_list_select"
-       >
+
+        >
 
     </android.support.v7.widget.RecyclerView>
 
@@ -111,18 +88,24 @@
         android:id="@+id/ckfh_list_datePicker"
         android:layout_width="wrap_content"
         android:layout_height="396dp"
-        android:layout_marginBottom="8dp"
-
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="@+id/tv_ckfh_list_endTime_label"
+         />
 
+    <TextView
+        android:id="@+id/tv_ckfh_list_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textSize="21dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ckfh_list_select"
+       />
 
 
 </android.support.constraint.ConstraintLayout>

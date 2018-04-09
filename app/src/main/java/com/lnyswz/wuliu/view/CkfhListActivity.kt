@@ -17,15 +17,15 @@ import com.lnyswz.wuliu.control.CkfhListRecyclerViewAdpter
 import kotlinx.android.synthetic.main.activity_ckfh_list.*
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.support.v7.widget.DividerItemDecoration
-import kotlinx.android.synthetic.main.activity_ckfh_scan_show.*
 
 
 class CkfhListActivity : AppCompatActivity(){
 
     private var context: Context?= null
     private val cal: Calendar = Calendar.getInstance()
+
+    private var haveDates: Boolean = false
 
     private var createYear: Int = 0
     private var createMonth: Int = 0
@@ -50,9 +50,14 @@ class CkfhListActivity : AppCompatActivity(){
     }
 
     private fun crateTimeInto() {
+        when(cal.get(Calendar.MONTH)+1){
+            1 ->{
+
+                }
+        }
         createYear = cal.get(Calendar.YEAR)
-        createMonth = cal.get(Calendar.MONTH) + 1
-        createDay = 1
+        createMonth = cal.get(Calendar.MONTH)
+        createDay = cal.get(Calendar.DAY_OF_MONTH)
         tv_ckfh_list_createTime.text = "${createYear}-${createMonth}-${createDay}"
         tv_ckfh_list_createTime.setOnClickListener {
 
@@ -65,6 +70,7 @@ class CkfhListActivity : AppCompatActivity(){
         endDay = cal.get(Calendar.DAY_OF_MONTH)
         tv_ckfh_list_endTime.text = "${endYear}-${endMonth}-${endDay}"
         tv_ckfh_list_endTime.setOnClickListener {
+
             timeManage(tv_ckfh_list_endTime, endYear, endMonth, endDay, "endTime")
         }
 
@@ -74,11 +80,12 @@ class CkfhListActivity : AppCompatActivity(){
         ckfh_list_datePicker.visibility = View.VISIBLE
         btn_ckfh_list_select.visibility = View.GONE
         recy_ckfh_list.visibility = View.GONE
+        tv_ckfh_list_msg.visibility = View.GONE
         ckfh_list_datePicker.init(year, month - 1, day)
         { datePicker, y, m, d ->
 
             datePicker.visibility = View.GONE
-            recy_ckfh_list.visibility = View.VISIBLE
+            showList()
             btn_ckfh_list_select.visibility = View.VISIBLE
             tv.text = "${y}-${m + 1}-${d}"
             when (par) {
@@ -120,15 +127,40 @@ class CkfhListActivity : AppCompatActivity(){
 
 
             val xsths = Utils.getListFromJson<List<ObjBean>>(s, object : TypeToken<List<ObjBean>>() {}.type)
-            recy_ckfh_list.visibility = View.VISIBLE
-            var adapter = CkfhListRecyclerViewAdpter(context!!, xsths,intent)
-            recy_ckfh_list.adapter = adapter
-            recy_ckfh_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            recy_ckfh_list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 
+
+            when(xsths.size) {
+                0    -> {
+                            haveDates = false
+                            showList()
+                            tv_ckfh_list_msg.visibility = View.VISIBLE
+                            recy_ckfh_list.visibility = View.GONE
+                            tv_ckfh_list_msg.text = getString(R.string.ckfh_list_no_list)
+                        }
+                else -> {
+                            haveDates = true
+                            showList()
+                            var adapter = CkfhListRecyclerViewAdpter(context!!, xsths,intent)
+                            recy_ckfh_list.adapter = adapter
+                            recy_ckfh_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                            recy_ckfh_list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+                        }
+            }
         }
     }
 
+    fun showList(){
+        when (haveDates){
+            true -> {
+                        tv_ckfh_list_msg.visibility = View.GONE
+                        recy_ckfh_list.visibility = View.VISIBLE
+                    }
+            else -> {
+                        tv_ckfh_list_msg.visibility = View.VISIBLE
+                        recy_ckfh_list.visibility = View.GONE
+                     }
+        }
+    }
 
 }
 
