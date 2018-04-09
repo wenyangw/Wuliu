@@ -2,13 +2,11 @@ package com.lnyswz.wuliu.control
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.lnyswz.wuliu.R
 import com.lnyswz.wuliu.common.ObjBean
-
 
 class CkfhDetailRecycleViewAdpter(var context: Context, var datas:  List<ObjBean> ): RecyclerView.Adapter<CkfhDetailRecycleViewAdpter.ViewHodler>(){
     override fun onBindViewHolder(holder: ViewHodler?, position: Int) {
@@ -35,7 +33,6 @@ class CkfhDetailRecycleViewAdpter(var context: Context, var datas:  List<ObjBean
         var ckfh_spmc: TextView = itemView.findViewById(R.id.tv_ckfh_detail_spmc)
         var ckfh_sppp: TextView = itemView.findViewById(R.id.tv_ckfh_detail_sppp)
         var ckfh_spcd: TextView = itemView.findViewById(R.id.tv_ckfh_detail_spcd)
-//        var ckfh_zdwmc: TextView = itemView.findViewById(R.id.tv_ckfh_detail_zjldw)
         var ckfh_zdwsl: TextView = itemView.findViewById(R.id.tv_ckfh_detail_zjldwsl)
     }
 }

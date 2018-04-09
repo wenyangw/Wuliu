@@ -5,7 +5,6 @@
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,7 +22,8 @@
         <activity android:name=".view.MainActivity" />
         <activity android:name=".view.CkfhScanShowActivity" />
         <activity android:name=".view.CkfhListActivity" />
-        <activity android:name=".view.CkfhDetailActivity"></activity>
+        <activity android:name=".view.CkfhDetailActivity" />
+
     </application>
 
 </manifest>

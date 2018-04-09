@@ -2,11 +2,9 @@ package com.lnyswz.wuliu.control
 
 import android.content.Context
 import android.content.Intent
-
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-
 import android.widget.TextView
 import com.lnyswz.wuliu.R
 import com.lnyswz.wuliu.common.ObjBean
@@ -20,16 +18,13 @@ class CkfhListRecyclerViewAdpter(var context: Context, var datas: List<ObjBean>,
         holder!!.ckfh_createTime.text =  "${context.getString(R.string.label_time)}:${data.createTime}"
 
         holder!!.itemView.setOnClickListener{
-
             var inet = Intent(context,CkfhDetailActivity::class.java)
             inet!!.putExtra("lsh", data.xsthlsh)
             inet!!.putExtra("type",intent.getStringExtra("type"))
             inet.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(inet)
         }
-
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHodler {
         var itemView = View.inflate(context, R.layout.item_recyclerview_ckfh_list,null)
@@ -40,14 +35,14 @@ class CkfhListRecyclerViewAdpter(var context: Context, var datas: List<ObjBean>,
         return datas.size
     }
 
-
     inner class ViewHodler(itemView: View): RecyclerView.ViewHolder(itemView){
-
         var ckfh_lsh: TextView = itemView.findViewById(R.id.tv_ckfh_list_lsh)
         var ckfh_kh: TextView = itemView.findViewById(R.id.tv_ckfh_list_kh)
         var ckfh_createTime: TextView = itemView.findViewById(R.id.tv_ckfh_list_createTime)
     }
 
 }
+
+
 
 

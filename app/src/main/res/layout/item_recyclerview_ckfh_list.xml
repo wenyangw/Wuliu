@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:padding="5dp"
-    android:background="@color/colorGray"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_scan_show"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     >
 
     <TextView
@@ -11,28 +12,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-        />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_ckfh_list_lsh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tv_ckfh_list_kh"
         android:textSize="18dp"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_list_kh" />
 
     <TextView
         android:id="@+id/tv_ckfh_list_createTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tv_ckfh_list_lsh"
         android:textSize="18dp"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_list_lsh" />
 
 
 
 
-
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

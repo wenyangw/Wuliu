@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.app.AppCompatActivity
-import android.widget.Button
 import com.google.gson.reflect.TypeToken
 import com.lnyswz.wuliu.R
 import com.lnyswz.wuliu.common.*
@@ -46,12 +45,10 @@ class MainActivity : AppCompatActivity() {
         SqlData4Buttons(address, params).execute()
     }
 
-
     internal inner class SqlData4Menus(url: String, param: Map<String, String>) : SqlUtils(url, param) {
         override fun onPostExecute(s: String) {
             super.onPostExecute(s)
             val menus = Utils.getListFromJson<List<ObjBean>>(s, object : TypeToken<List<ObjBean>>() {}.type)
-
             menus.filter {it.pid != null}.map {getButtons(it.id)}
         }
     }
@@ -59,15 +56,11 @@ class MainActivity : AppCompatActivity() {
     internal inner class SqlData4Buttons(url: String, param: Map<String, String>) : SqlUtils(url, param) {
         override fun onPostExecute(s: String) {
             super.onPostExecute(s)
-
             val objs = Utils.getListFromJson<List<ObjBean>>(s, object : TypeToken<List<ObjBean>>() {}.type)
-
             var imgBtn: ImageButton?
             var lastId = 0
             for ((index, obj) in objs.withIndex()) {
-
                 imgBtn = ImageButton(applicationContext)
-
                 when(obj.handler){
                     "ckfh_scan_code" -> {
                         imgBtn.setBackgroundResource(R.drawable.ckfh_scan_icon)
@@ -127,5 +120,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(inet)
 
     }
+
+
+
 
 }

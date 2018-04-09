@@ -5,17 +5,13 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
-import android.view.View
 import com.google.gson.reflect.TypeToken
 import com.lnyswz.wuliu.R
-import com.lnyswz.wuliu.common.DatagridBean
 import com.lnyswz.wuliu.common.ObjBean
 import com.lnyswz.wuliu.common.SqlUtils
 import com.lnyswz.wuliu.common.Utils
 import com.lnyswz.wuliu.control.CkfhDetailRecycleViewAdpter
 import kotlinx.android.synthetic.main.activity_ckfh_detail.*
-import kotlinx.android.synthetic.main.activity_ckfh_list.*
 
 
 class CkfhDetailActivity : AppCompatActivity() {
@@ -27,7 +23,6 @@ class CkfhDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_ckfh_detail)
         context = this
         getCkfhDetail()
-
     }
 
     fun getCkfhDetail(){
@@ -46,8 +41,6 @@ class CkfhDetailActivity : AppCompatActivity() {
             recy_ckfh_detail_show.layoutManager = LinearLayoutManager( context, LinearLayoutManager.VERTICAL, false )
             recy_ckfh_detail_show.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
-
     }
-
 
 }
