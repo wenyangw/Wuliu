@@ -3,6 +3,7 @@ package com.lnyswz.wuliu.view
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -16,6 +17,7 @@ import com.lnyswz.wuliu.control.CkfhListRecyclerViewAdpter
 import kotlinx.android.synthetic.main.activity_ckfh_list.*
 import java.util.*
 import android.support.v7.widget.DividerItemDecoration
+import kotlinx.android.synthetic.main.activity_ckfh_scan_show.*
 
 
 class CkfhListActivity : AppCompatActivity(){
@@ -90,7 +92,7 @@ class CkfhListActivity : AppCompatActivity(){
     }
 
     fun getCkfhData(){
-        //Òþ²ØÈí¼üÅÌ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         val inputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(et_ckfh_list_khmc.getWindowToken(), 0)
 

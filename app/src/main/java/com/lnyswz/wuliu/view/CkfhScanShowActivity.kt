@@ -16,8 +16,8 @@ import android.support.v7.widget.DividerItemDecoration
 
 class CkfhScanShowActivity : AppCompatActivity() {
 
-    private var context: Context ?= null
-    private var xsthlsh: String ?= ""
+    private var context: Context? = null
+    private var xsthlsh: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
