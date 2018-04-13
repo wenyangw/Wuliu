@@ -1,7 +1,6 @@
 package com.lnyswz.wuliu.common;
 
 import android.os.AsyncTask;
-
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;

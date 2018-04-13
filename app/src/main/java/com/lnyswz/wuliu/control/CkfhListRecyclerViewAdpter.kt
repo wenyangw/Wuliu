@@ -3,6 +3,7 @@ package com.lnyswz.wuliu.control
 import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
+import android.text.Html
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -13,9 +14,9 @@ import com.lnyswz.wuliu.view.CkfhDetailActivity
 class CkfhListRecyclerViewAdpter(var context: Context, var datas: List<ObjBean>,var intent: Intent) : RecyclerView.Adapter<CkfhListRecyclerViewAdpter.ViewHodler>() {
     override fun onBindViewHolder(holder: ViewHodler?, position: Int) {
         var data = datas.get(position)
-        holder!!.ckfh_lsh.text ="${context.getString(R.string.label_lsh)}:${data.xsthlsh}"
-        holder!!.ckfh_kh.text = "${context.getString(R.string.label_kh)}:${data.khmc}"
-        holder!!.ckfh_createTime.text =  "${context.getString(R.string.label_time)}:${data.createTime}"
+        holder!!.ckfh_lsh.text =Html.fromHtml("<b>${context.getString(R.string.label_lsh)}:</b>  ${data.xsthlsh}")
+        holder!!.ckfh_kh.text = Html.fromHtml("<b>${context.getString(R.string.label_kh)}:</b>  ${data.khmc}")
+        holder!!.ckfh_createTime.text =  Html.fromHtml("<b>${context.getString(R.string.label_time)}:</b>  ${data.createTime}")
 
         holder!!.itemView.setOnClickListener{
             var inet = Intent(context,CkfhDetailActivity::class.java)

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">物流</string>
+    <string name="app_name">辽物通</string>
     <string name="text_login">登&#160;&#160;&#160;&#160;录</string>
     <string name="text_name">用户名</string>
     <string name="text_password">密码</string>
@@ -17,21 +17,27 @@
     <string name="label_zjldwmc">单位</string>
     <string name="label_zjldsl">数量</string>
 
-
+    <string name="title_update">更新</string>
+    <string name="title_verson">版本</string>
     <string name="label_time">时间</string>
     <string name="label_starTime">起始时间：</string>
     <string name="label_endTime">结束时间：</string>
     <string name="btn_select">查&#160;&#160;&#160;&#160;询</string>
     <string name="btn_submit">提&#160;&#160;&#160;&#160;交</string>
 
+    <string name="label_title_ckfh">出库复核</string>
+    <string name="label_title_fhmx">复合明细</string>
 
-    <string name="label_title_ckfh">出库复核单</string>
-
+    <string name="thfs_0_sh">送货</string>
+    <string name="thfs_01_zt">自提</string>
 
     <string name="scan_hint">请输入12位流水号！</string>
 
     <string name="scan_no_lsh">该流水号不正确！</string>
 
-    <string name="ckfh_list_no_list">该条件没有数据！</string>
+    <string name="update_Unwanted">该版本已是最新版本！</string>
+
+    <string name="ckfh_list_no_list">没有复合条件的记录！</string>
+
 
 </resources>

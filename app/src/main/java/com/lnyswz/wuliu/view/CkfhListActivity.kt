@@ -3,7 +3,6 @@ package com.lnyswz.wuliu.view
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -17,7 +16,7 @@ import com.lnyswz.wuliu.control.CkfhListRecyclerViewAdpter
 import kotlinx.android.synthetic.main.activity_ckfh_list.*
 import java.util.*
 import android.support.v7.widget.DividerItemDecoration
-import kotlinx.android.synthetic.main.activity_ckfh_scan_show.*
+import android.view.Window
 
 
 class CkfhListActivity : AppCompatActivity(){
@@ -48,12 +47,18 @@ class CkfhListActivity : AppCompatActivity(){
 
     private fun crateTimeInto() {
         when(cal.get(Calendar.MONTH)+1){
-            1 -> createYear = cal.get(Calendar.YEAR)-1
-            else -> createYear = cal.get(Calendar.YEAR)
+            1 -> {
+                    createYear = cal.get(Calendar.YEAR)-1
+                    createMonth = 12
+                }
+            else -> {
+                        createYear = cal.get(Calendar.YEAR)
+                        createMonth = cal.get(Calendar.MONTH)
+                    }
         }
-        createMonth = cal.get(Calendar.MONTH)
+
         createDay = cal.get(Calendar.DAY_OF_MONTH)
-        tv_ckfh_list_createTime.text = "${createYear}-${createMonth}-${createDay}"
+        tv_ckfh_list_createTime.text = "${createYear}-${manageDate(createMonth)}-${manageDate(createDay)}"
         tv_ckfh_list_createTime.setOnClickListener {
             timeManage(tv_ckfh_list_createTime, createYear, createMonth, createDay, "createTime")
         }
@@ -63,7 +68,7 @@ class CkfhListActivity : AppCompatActivity(){
         endYear = cal.get(Calendar.YEAR)
         endMonth = cal.get(Calendar.MONTH) + 1
         endDay = cal.get(Calendar.DAY_OF_MONTH)
-        tv_ckfh_list_endTime.text = "${endYear}-${endMonth}-${endDay}"
+        tv_ckfh_list_endTime.text = "${endYear}-${manageDate(endMonth)}-${manageDate(endDay)}"
         tv_ckfh_list_endTime.setOnClickListener {
             timeManage(tv_ckfh_list_endTime, endYear, endMonth, endDay, "endTime")
         }
@@ -75,7 +80,7 @@ class CkfhListActivity : AppCompatActivity(){
         { datePicker, y, m, d ->
             datePicker.visibility = View.GONE
             showList(haveDates)
-            tv.text = "${y}-${m + 1}-${d}"
+            tv.text = "${y}-${manageDate(m + 1)}-${manageDate(d)}"
             when (par) {
                 "createTime" -> {
                     createYear = y
@@ -92,7 +97,7 @@ class CkfhListActivity : AppCompatActivity(){
     }
 
     fun getCkfhData(){
-        //���������
+        //隐藏软键盘
         val inputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(et_ckfh_list_khmc.getWindowToken(), 0)
 
@@ -128,18 +133,21 @@ class CkfhListActivity : AppCompatActivity(){
 
     fun showList(para: String){
         when (para){
+            //点击日期初始化
             "0" ->{
                         tv_ckfh_list_msg.visibility = View.GONE
                         recy_ckfh_list.visibility = View.GONE
                         ckfh_list_datePicker.visibility = View.VISIBLE
                         btn_ckfh_list_select.visibility = View.GONE
                     }
+            //有数据显示
             "1" -> {
                         tv_ckfh_list_msg.visibility = View.GONE
                         recy_ckfh_list.visibility = View.VISIBLE
                         btn_ckfh_list_select.visibility = View.VISIBLE
                         haveDates = para
                     }
+            //没有数据，显示提示信息
             "2" -> {
                         tv_ckfh_list_msg.visibility = View.VISIBLE
                         recy_ckfh_list.visibility = View.GONE
@@ -148,6 +156,14 @@ class CkfhListActivity : AppCompatActivity(){
                     }
         }
     }
+
+    fun manageDate(int: Int): String{
+        when(int){
+            in 1 .. 9 -> return "0${int}"
+        }
+        return "${int}"
+    }
+
 
 }
 

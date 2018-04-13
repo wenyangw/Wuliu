@@ -2,6 +2,7 @@ package com.lnyswz.wuliu.control
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.text.Html
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -16,11 +17,10 @@ class CkfhRecyclerViewAdpter(var context: Context, var datas: ArrayList<ObjBean>
 
     override fun onBindViewHolder(holder: ViewHodler?, position: Int) {
             var data = datas.get(position)
-            holder!!.ckfh_spbh.text =  "${context.getString(R.string.label_spbh)}:${data.spbh}"
-            holder!!.ckfh_spmc.text =  "${context.getString(R.string.label_spmc)}:${data.spmc}"
-            holder!!.ckfh_sppp.text =  "${context.getString(R.string.label_sppp)}:${data.sppp}"
-            holder!!.ckfh_spcd.text =  "${context.getString(R.string.label_spcd)}:${data.spcd}"
-            holder!!.ckfh_zdwsl.text =  "${context.getString(R.string.label_zjldsl)}:${data.zdwsl}(${data.zjldwmc.trim()})"
+            holder!!.ckfh_spbh.text =  Html.fromHtml("<b>${context.getString(R.string.label_spbh)}:</b>  ${data.spbh}")
+            holder!!.ckfh_spmc.text =  Html.fromHtml("<b>${context.getString(R.string.label_spmc)}:</b>  ${data.spmc}")
+            holder!!.ckfh_spcd.text =  Html.fromHtml("<b>${context.getString(R.string.label_spcd)}:</b>  ${data.spcd}")
+            holder!!.ckfh_zdwsl.text =  Html.fromHtml("<b>${context.getString(R.string.label_zjldsl)}:</b>  ${data.zdwsl}")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHodler {
@@ -31,7 +31,6 @@ class CkfhRecyclerViewAdpter(var context: Context, var datas: ArrayList<ObjBean>
     inner class ViewHodler(itemView: View): RecyclerView.ViewHolder(itemView) {
         var ckfh_spbh: TextView = itemView.findViewById(R.id.tv_ckfh_detail_spbh)
         var ckfh_spmc: TextView = itemView.findViewById(R.id.tv_ckfh_detail_spmc)
-        var ckfh_sppp: TextView = itemView.findViewById(R.id.tv_ckfh_detail_sppp)
         var ckfh_spcd: TextView = itemView.findViewById(R.id.tv_ckfh_detail_spcd)
         var ckfh_zdwsl: TextView = itemView.findViewById(R.id.tv_ckfh_detail_zjldwsl)
     }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="22dp" android:layout_width="22dp"
+
+    >
+    <item
+        android:id="@+id/main_menu"
+        android:title="@string/title_update"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+    />
+    <item
+        android:id="@+id/main_versonName"
+        android:title="@string/title_verson"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        />
+</menu>
+

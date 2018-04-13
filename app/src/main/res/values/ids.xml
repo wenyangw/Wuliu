@@ -2,4 +2,6 @@
 <resources>
     <item name="ckfh_scan_code" type="id" />
     <item name="ckfh_list_record" type="id" />
+    <item name="shqr_scan_code" type="id" />
+    <item name="shqr_list_record" type="id" />
 </resources>

@@ -69,7 +69,15 @@ object Utils {
         return intent
     }
 
-
+    private var mExitTime: Long = 0
+    fun exit(context:Context) {
+        if (System.currentTimeMillis() - mExitTime > 2000) {
+            toast(context, "再按一次退出程序")
+            mExitTime = System.currentTimeMillis()
+        } else {
+            ActivityManager.getInstance().exit()
+        }
+    }
 
 }
 
@@ -78,13 +86,16 @@ object Utils {
 
 
 
+data class verson(var versionCode: Int, var versionName: String)
 
 
 data class JsonBean(val success: Boolean, val msg: String, val obj: ObjBean)
 
+
+
 data class DatagridBean(val total: Long,val msg: String, val obj: ObjBean, val rows: List<ObjBean>)
 
-data class ObjBean(val id: String,
+data class ObjBean( val id: String,
                     val userName: String,
                     val did: String,
                     var bmmc: String,
@@ -98,6 +109,7 @@ data class ObjBean(val id: String,
                     var ckmc: String,
                     var bz: String,
 
+
                     val spbh: String,
                     var spmc: String,
                     var spcd: String,
@@ -107,4 +119,9 @@ data class ObjBean(val id: String,
                     var cjldwmc: String,
                     var zdwsl: String,
                     var cdwsl: String
+
                     )
+
+
+
+

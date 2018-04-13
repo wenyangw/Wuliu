@@ -14,8 +14,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="tv_ckfh_detail_spmc"
-        android:textSize="18dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,42 +23,37 @@
         android:id="@+id/tv_ckfh_detail_spbh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tv_ckfh_detail_spbh"
-        android:textSize="18dp"
+
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/tv_ckfh_detail_spmc"
         app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_detail_spmc" />
-
-    <TextView
-        android:id="@+id/tv_ckfh_detail_sppp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-
-        android:text="tv_ckfh_detail_sppp"
-        android:textSize="18dp"
-        android:layout_marginStart="60dp"
-        app:layout_constraintStart_toEndOf="@+id/tv_ckfh_detail_spbh"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_detail_spmc" />
-
-    <TextView
-        android:id="@+id/tv_ckfh_detail_zjldwsl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tv_ckfh_detail_zjldwsl"
-        android:textColor="@color/colorNunber"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_ckfh_detail_spbh"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_detail_sppp" />
-
 
     <TextView
         android:id="@+id/tv_ckfh_detail_spcd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tv_ckfh_detail_spcd"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_ckfh_detail_sppp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_detail_sppp" />
+
+        android:textSize="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_ckfh_detail_spbh"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_detail_spmc"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_ckfh_detail_zjldwsl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorNunber"
+        android:textSize="20dp"
+        android:layout_marginStart="8dp"
+
+        app:layout_constraintStart_toStartOf="@+id/tv_ckfh_detail_spbh"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ckfh_detail_spcd" />
+
+
+
 
 
 

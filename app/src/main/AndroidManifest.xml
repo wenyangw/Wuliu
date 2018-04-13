@@ -5,6 +5,13 @@
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!--VISIBILITY_HIDDEN表示不显示任何通知栏提示的权限-->
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
+    <!-- 读SD卡权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 写SD卡权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,9 +27,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.MainActivity" />
-        <activity android:name=".view.CkfhScanShowActivity" />
-        <activity android:name=".view.CkfhListActivity" />
-        <activity android:name=".view.CkfhDetailActivity" />
+        <activity android:name=".view.CkfhScanShowActivity" android:label="@string/label_title_ckfh"/>
+        <activity android:name=".view.CkfhListActivity"   android:label="@string/label_title_fhmx"/>
+        <activity android:name=".view.CkfhDetailActivity" android:label="@string/label_title_fhmx" />
+        <service android:name=".common.DownloadService" />
 
     </application>
 

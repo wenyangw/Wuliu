@@ -10,9 +10,16 @@ import com.google.gson.reflect.TypeToken
 import com.lnyswz.wuliu.R
 import com.lnyswz.wuliu.common.*
 import android.support.constraint.ConstraintSet
-import android.util.Log
 import android.widget.ImageButton
 import com.lnyswz.wuliu.common.SqlUtils
+import com.lnyswz.wuliu.common.APKVersionCodeUtils
+import android.annotation.SuppressLint
+import android.util.Log
+import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuItem
+import kotlinx.android.synthetic.main.title_menu.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +32,36 @@ class MainActivity : AppCompatActivity() {
         layout = findViewById(R.id.layout_main)
         context=this
         showMain()
+    }
+
+//标题菜单-更新
+    @SuppressLint("ResourceType")
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.layout.title_menu, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.i("dd",item.toString())
+
+        when (item.getItemId()) {
+            R.id.main_menu//监听菜单按钮
+            -> {
+                getVerson()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    //对返回键进行监听
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.repeatCount == 0) {
+            Utils.exit(this!!)
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
     private fun showMain() {
@@ -71,6 +108,16 @@ class MainActivity : AppCompatActivity() {
                         imgBtn.setBackgroundResource(R.drawable.ckfh_list_icon)
                         imgBtn.id = R.id.ckfh_list_record
                         imgBtn.setOnClickListener { ckfh_list_record() }
+                    }
+                    "shqr_scan_code" -> {
+                        imgBtn.setBackgroundResource(R.drawable.shqr_scan_icon)
+                        imgBtn.id = R.id.shqr_scan_code
+                        imgBtn.setOnClickListener { shqr_scan_code() }
+                    }
+                    "shqr_list_record" -> {
+                        imgBtn.setBackgroundResource(R.drawable.shqr_list_icon)
+                        imgBtn.id = R.id.shqr_list_record
+                        imgBtn.setOnClickListener { shqr_list_record() }
                     }
                 }
                 layout?.addView(imgBtn)
@@ -119,6 +166,52 @@ class MainActivity : AppCompatActivity() {
         inet.putExtra("createId",intent.getStringExtra("userId"))
         startActivity(inet)
 
+    }
+
+    private fun shqr_scan_code(){
+        var inet = Intent(this, CkfhScanShowActivity::class.java)
+        inet.putExtra("type","send")
+        inet.putExtra("createId",intent.getStringExtra("userId"))
+        startActivity(inet)
+    }
+
+    private fun shqr_list_record(){
+        var inet = Intent(this,CkfhListActivity::class.java)
+        inet.putExtra("type","send")
+        inet.putExtra("createId",intent.getStringExtra("userId"))
+        startActivity(inet)
+    }
+
+
+
+    private fun getVerson() {
+        val address = Utils.APP_URL + "/admin/versionAction!getVersion.action"
+        val params = mapOf("userId=" to intent.getStringExtra("userId"))
+        SqlData4Verson(address,params).execute()
+    }
+
+    internal inner class SqlData4Verson(url: String, param: Map<String, String>) : SqlUtils(url, param) {
+        override fun onPostExecute(s: String) {
+            super.onPostExecute(s)
+            val appVerson = Utils.getObjectFromJson(s, verson::class.java)
+            progressVersion(appVerson.versionCode)
+        }
+    }
+
+
+    //系统版本升级
+    private fun progressVersion(dataVerson: Int) {
+
+        //VersionUtils.getVersionCode(this)工具类里获取当前安装的apk版本号
+
+        val versionCode = APKVersionCodeUtils.getVersionCode(this)
+        val versionName = APKVersionCodeUtils.getVerName(this)
+
+        if(versionCode < dataVerson){
+            startService(Intent(this@MainActivity, DownloadService::class.java))
+        }else{
+            Utils.toast(applicationContext, this.getString(R.string.update_Unwanted))
+        }
     }
 
 
