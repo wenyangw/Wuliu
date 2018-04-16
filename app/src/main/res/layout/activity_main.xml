@@ -7,6 +7,6 @@
     android:layout_height="match_parent"
     android:id="@+id/layout_main"
     tools:context="com.lnyswz.wuliu.view.MainActivity"
-    android:background="@color/colorMaintBackground">
+    android:background="@drawable/main_background">
 
 </android.support.constraint.ConstraintLayout>

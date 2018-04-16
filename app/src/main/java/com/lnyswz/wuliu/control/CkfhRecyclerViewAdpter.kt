@@ -10,7 +10,7 @@ import com.lnyswz.wuliu.R
 import com.lnyswz.wuliu.common.ObjBean
 
 
-class CkfhRecyclerViewAdpter(var context: Context, var datas: ArrayList<ObjBean>  ) : RecyclerView.Adapter<CkfhRecyclerViewAdpter.ViewHodler>() {
+class CkfhRecyclerViewAdpter(var context: Context, var datas: ArrayList<ObjBean>) : RecyclerView.Adapter<CkfhRecyclerViewAdpter.ViewHodler>() {
     override fun getItemCount(): Int {
         return datas.size
     }

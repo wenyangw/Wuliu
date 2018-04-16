@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         showMain()
     }
 
-//标题菜单-更新
+    //标题菜单-更新
     @SuppressLint("ResourceType")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        Log.i("dd",item.toString())
+
 
         when (item.getItemId()) {
             R.id.main_menu//监听菜单按钮

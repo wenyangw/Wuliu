@@ -14,7 +14,9 @@ import android.text.TextWatcher
 import android.view.inputmethod.InputMethodManager
 import android.support.v7.widget.DividerItemDecoration
 import android.text.Html
-import android.view.Window
+
+
+
 
 class CkfhScanShowActivity : AppCompatActivity() {
 
@@ -31,6 +33,10 @@ class CkfhScanShowActivity : AppCompatActivity() {
     //监听输入事件
     fun listenerEditViewVal(){
         et_scan_input.addTextChangedListener(EditTextChangeListener())
+    }
+
+    override fun setTitle(title: CharSequence) {
+        super.setTitle("测试")
     }
 
     fun getData(lsh: String){
@@ -92,7 +98,8 @@ class CkfhScanShowActivity : AppCompatActivity() {
                 tv_ckfh_lsh.visibility = View.VISIBLE
                 tv_ckfh_bm.visibility = View.VISIBLE
                 tv_ckfh_kh.visibility = View.VISIBLE
-             
+                tv_ckfh_thfs.visibility = View.VISIBLE
+
                 recy_ckfh_recyler.visibility = View.VISIBLE
                 btn_ckfh_submit.visibility = View.VISIBLE
             }
@@ -110,10 +117,14 @@ class CkfhScanShowActivity : AppCompatActivity() {
     }
 
     private fun putTVText(xsth: DatagridBean) {
-        tv_ckfh_bm.text = Html.fromHtml("<b>${getString(R.string.label_bmmc)}: </b> ${xsth.obj.bmmc} ")
+        tv_ckfh_bm.text = Html.fromHtml("<b>${getString(R.string.label_bmmc)}:</b>  ${xsth.obj.bmmc} ")
         tv_ckfh_lsh.text = Html.fromHtml("<b>${getString(R.string.label_lsh)}:</b>  ${xsth.obj.xsthlsh} ")
         tv_ckfh_kh.text = Html.fromHtml("<b>${getString(R.string.label_kh)}:</b>  ${xsth.obj.khmc} ")
-//        tv_ckfh_thfs.text = "自提"
+        when(xsth.obj.thfs){
+            "0" -> tv_ckfh_thfs.text = "自提"
+            "1" -> tv_ckfh_thfs.text = "送货"
+            else -> tv_ckfh_thfs.text = ""
+        }
         btn_ckfh_submit.text = ("${getString(R.string.btn_submit)}")
     }
 //监听输入方法

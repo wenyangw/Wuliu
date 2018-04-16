@@ -29,7 +29,7 @@
     <string name="label_title_fhmx">复合明细</string>
 
     <string name="thfs_0_sh">送货</string>
-    <string name="thfs_01_zt">自提</string>
+    <string name="thfs_1_zt">自提</string>
 
     <string name="scan_hint">请输入12位流水号！</string>
 

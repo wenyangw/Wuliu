@@ -17,6 +17,13 @@ class CkfhListRecyclerViewAdpter(var context: Context, var datas: List<ObjBean>,
         holder!!.ckfh_lsh.text =Html.fromHtml("<b>${context.getString(R.string.label_lsh)}:</b>  ${data.xsthlsh}")
         holder!!.ckfh_kh.text = Html.fromHtml("<b>${context.getString(R.string.label_kh)}:</b>  ${data.khmc}")
         holder!!.ckfh_createTime.text =  Html.fromHtml("<b>${context.getString(R.string.label_time)}:</b>  ${data.createTime}")
+        when(data.thfs){
+            "0" -> holder!!.ckfh_thfs.text = "送货"
+            "1" -> holder!!.ckfh_thfs.text  = "自提"
+            else -> holder!!.ckfh_thfs.text = ""
+        }
+
+
 
         holder!!.itemView.setOnClickListener{
             var inet = Intent(context,CkfhDetailActivity::class.java)
@@ -40,6 +47,7 @@ class CkfhListRecyclerViewAdpter(var context: Context, var datas: List<ObjBean>,
         var ckfh_lsh: TextView = itemView.findViewById(R.id.tv_ckfh_list_lsh)
         var ckfh_kh: TextView = itemView.findViewById(R.id.tv_ckfh_list_kh)
         var ckfh_createTime: TextView = itemView.findViewById(R.id.tv_ckfh_list_createTime)
+        var ckfh_thfs: TextView = itemView.findViewById(R.id.tv_ckfh_list_thfs)
     }
 
 }

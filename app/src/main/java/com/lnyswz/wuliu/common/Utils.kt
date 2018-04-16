@@ -7,7 +7,6 @@ import android.widget.Toast
 import com.google.gson.Gson
 import com.lnyswz.wuliu.R
 import com.lnyswz.wuliu.view.CkfhScanShowActivity
-import com.lnyswz.wuliu.view.LoginActivity
 
 import java.lang.reflect.Type
 
@@ -108,6 +107,7 @@ data class ObjBean( val id: String,
                     var khmc: String,
                     var ckmc: String,
                     var bz: String,
+                    var thfs: String,
 
 
                     val spbh: String,
