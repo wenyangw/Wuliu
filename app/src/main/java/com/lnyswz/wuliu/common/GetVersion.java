@@ -7,7 +7,7 @@ import android.content.pm.PackageManager;
  * Created by Laizhen on 2017/4/21.
  */
 
-public class APKVersionCodeUtils {
+public class GetVersion {
     /**
      * 获取当前本地apk的版本
      *

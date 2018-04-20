@@ -18,7 +18,7 @@
     <string name="label_zjldsl">数量</string>
 
     <string name="title_update">更新</string>
-    <string name="title_verson">版本</string>
+    <string name="title_version">版本 %1$s</string>
     <string name="label_time">时间</string>
     <string name="label_starTime">起始时间：</string>
     <string name="label_endTime">结束时间：</string>
@@ -31,13 +31,20 @@
     <string name="thfs_0_sh">送货</string>
     <string name="thfs_1_zt">自提</string>
 
+    <string name="server_url_menu">服务器设置</string>
+    <string name="server_url_hint">请输入服务器地址</string>
+
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+
+    <string name="check_network_hint">请检查网络设置！</string>
+
     <string name="scan_hint">请输入12位流水号！</string>
 
     <string name="scan_no_lsh">该流水号不正确！</string>
 
-    <string name="update_Unwanted">该版本已是最新版本！</string>
+    <string name="update_new_version">该版本已是最新版本！</string>
 
     <string name="ckfh_list_no_list">没有复合条件的记录！</string>
-
 
 </resources>

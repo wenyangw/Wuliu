@@ -18,12 +18,10 @@ class CkfhListRecyclerViewAdpter(var context: Context, var datas: List<ObjBean>,
         holder!!.ckfh_kh.text = Html.fromHtml("<b>${context.getString(R.string.label_kh)}:</b>  ${data.khmc}")
         holder!!.ckfh_createTime.text =  Html.fromHtml("<b>${context.getString(R.string.label_time)}:</b>  ${data.createTime}")
         when(data.thfs){
-            "0" -> holder!!.ckfh_thfs.text = "送货"
-            "1" -> holder!!.ckfh_thfs.text  = "自提"
+            "0" -> holder!!.ckfh_thfs.text = "${context.getString(R.string.thfs_0_sh)}"
+            "1" -> holder!!.ckfh_thfs.text  =  "${context.getString(R.string.thfs_1_zt)}"
             else -> holder!!.ckfh_thfs.text = ""
         }
-
-
 
         holder!!.itemView.setOnClickListener{
             var inet = Intent(context,CkfhDetailActivity::class.java)

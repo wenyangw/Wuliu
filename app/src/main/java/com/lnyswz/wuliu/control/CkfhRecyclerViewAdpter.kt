@@ -10,7 +10,7 @@ import com.lnyswz.wuliu.R
 import com.lnyswz.wuliu.common.ObjBean
 
 
-class CkfhRecyclerViewAdpter(var context: Context, var datas: ArrayList<ObjBean>) : RecyclerView.Adapter<CkfhRecyclerViewAdpter.ViewHodler>() {
+class CkfhRecyclerViewAdpter(var context: Context, var datas: ArrayList<ObjBean>  ) : RecyclerView.Adapter<CkfhRecyclerViewAdpter.ViewHodler>() {
     override fun getItemCount(): Int {
         return datas.size
     }
@@ -20,7 +20,7 @@ class CkfhRecyclerViewAdpter(var context: Context, var datas: ArrayList<ObjBean>
             holder!!.ckfh_spbh.text =  Html.fromHtml("<b>${context.getString(R.string.label_spbh)}:</b>  ${data.spbh}")
             holder!!.ckfh_spmc.text =  Html.fromHtml("<b>${context.getString(R.string.label_spmc)}:</b>  ${data.spmc}")
             holder!!.ckfh_spcd.text =  Html.fromHtml("<b>${context.getString(R.string.label_spcd)}:</b>  ${data.spcd}")
-            holder!!.ckfh_zdwsl.text =  Html.fromHtml("<b>${context.getString(R.string.label_zjldsl)}:</b>  ${data.zdwsl}")
+            holder!!.ckfh_zdwsl.text =  Html.fromHtml("<b>${context.getString(R.string.label_zjldsl)}:</b>  ${data.zdwsl}(${data.zjldwmc.trim()})")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHodler {

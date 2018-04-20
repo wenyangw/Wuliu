@@ -22,19 +22,20 @@ public class SqlUtils extends AsyncTask<Void, Integer, String> {
         this.param = param;
     }
 
+
     @Override
     protected void onPostExecute(String s) {
+
         super.onPostExecute(s);
     }
 
     @Override
     protected String doInBackground(Void... params) {
-        String result = "";
+        String result = "{msg:'请检查网络！'}";
         try {
             URL url = new URL(address);
             //请求的数据:
             String data = convertMapToString(param);
-
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             //设置请求方式,请求超时信息
             conn.setRequestMethod("POST");
@@ -45,7 +46,6 @@ public class SqlUtils extends AsyncTask<Void, Integer, String> {
             conn.setDoInput(true);
             //Post方式不能缓存,需手动设置为false
             conn.setUseCaches(false);
-
             //String data = "passwd="+ URLEncoder.encode("", "UTF-8")+
             //    "&number="+ URLEncoder.encode("", "UTF-8");
             //这里可以写一些请求头的东东...
@@ -90,5 +90,6 @@ public class SqlUtils extends AsyncTask<Void, Integer, String> {
         }
         return sb.toString();
     }
+
 }
 

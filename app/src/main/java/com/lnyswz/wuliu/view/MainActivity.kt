@@ -12,13 +12,11 @@ import com.lnyswz.wuliu.common.*
 import android.support.constraint.ConstraintSet
 import android.widget.ImageButton
 import com.lnyswz.wuliu.common.SqlUtils
-import com.lnyswz.wuliu.common.APKVersionCodeUtils
+import com.lnyswz.wuliu.common.GetVersion
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.title_menu.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,19 +35,18 @@ class MainActivity : AppCompatActivity() {
     //标题菜单-更新
     @SuppressLint("ResourceType")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.layout.title_menu, menu)
-
+    super.onCreateOptionsMenu(menu)
+    var versionName=String.format(this.getString(R.string.title_version),GetVersion.getVerName(this))
+    menu.add(Menu.NONE,  R.id.menu_update, 0, this.getString(R.string.title_update))
+    menu.add(Menu.NONE,  R.id.menu_versionName, 1,versionName )
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-
         when (item.getItemId()) {
-            R.id.main_menu//监听菜单按钮
+            R.id.menu_update//监听菜单按钮
             -> {
-                getVerson()
+                getVersion()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -65,7 +62,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showMain() {
-        val address = Utils.APP_URL + "/admin/menuAction!menuTree.action"
+        val address = Utils.sqlUrl(SPUtils.get(context, "serverUrl", "").toString(),"/admin/menuAction!menuTree.action")
         val params = mapOf("userId=" to intent.getStringExtra("userId"),
                 "userName=" to intent.getStringExtra("userName"),
                 "cid=" to Utils.CATALOG_ID)
@@ -73,7 +70,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getButtons(menuId: String) {
-        val address = Utils.APP_URL + "/admin/buttonAction!buttons.action"
+        val address = Utils.sqlUrl(SPUtils.get(context, "serverUrl", "").toString(),"/admin/buttonAction!buttons.action")
         val params = mapOf("userId=" to intent.getStringExtra("userId"),
                 "userName=" to intent.getStringExtra("userName"),
                 "mid=" to menuId,
@@ -121,7 +118,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 layout?.addView(imgBtn)
-
                 val set = ConstraintSet()
                 //复制原有的约束关系
                 set.clone(layout)
@@ -182,39 +178,30 @@ class MainActivity : AppCompatActivity() {
         startActivity(inet)
     }
 
-
-
-    private fun getVerson() {
-        val address = Utils.APP_URL + "/admin/versionAction!getVersion.action"
+    private fun getVersion() {
+        val address = Utils.sqlUrl(SPUtils.get(context, "serverUrl", "").toString(),"/admin/versionAction!getVersion.action")
         val params = mapOf("userId=" to intent.getStringExtra("userId"))
-        SqlData4Verson(address,params).execute()
+        SqlData4Version(address,params).execute()
     }
 
-    internal inner class SqlData4Verson(url: String, param: Map<String, String>) : SqlUtils(url, param) {
+    internal inner class SqlData4Version(url: String, param: Map<String, String>) : SqlUtils(url, param) {
         override fun onPostExecute(s: String) {
             super.onPostExecute(s)
-            val appVerson = Utils.getObjectFromJson(s, verson::class.java)
-            progressVersion(appVerson.versionCode)
+            val appVersion = Utils.getObjectFromJson(s, Version::class.java)
+            progressVersion(appVersion.versionCode)
         }
     }
-
 
     //系统版本升级
-    private fun progressVersion(dataVerson: Int) {
-
+    private fun progressVersion(dataVersion: Int) {
         //VersionUtils.getVersionCode(this)工具类里获取当前安装的apk版本号
-
-        val versionCode = APKVersionCodeUtils.getVersionCode(this)
-        val versionName = APKVersionCodeUtils.getVerName(this)
-
-        if(versionCode < dataVerson){
+        val versionCode = GetVersion.getVersionCode(this)
+        if(versionCode < dataVersion){
             startService(Intent(this@MainActivity, DownloadService::class.java))
         }else{
-            Utils.toast(applicationContext, this.getString(R.string.update_Unwanted))
+            Utils.toast(applicationContext, this.getString(R.string.update_new_version))
         }
     }
-
-
 
 
 }

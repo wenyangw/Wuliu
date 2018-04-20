@@ -17,10 +17,10 @@ public class SPUtils {
     /**
      * 保存在手机里面的文件名
      */
-    public static final String FILE_NAME = "sp_data";
+    public static final String FILE_NAME = "wuliu_data";
 
-    public static final String APK_VERSION = "apk_version";//apk版本 默认值是""
-    public static final String WIFI_DOWNLOAD_SWITCH = "wifi_download_switch";//apk版本 默认值是""
+//    public static final String APK_VERSION = "apk_version";//apk版本 默认值是""
+//    public static final String WIFI_DOWNLOAD_SWITCH = "wifi_download_switch";//apk版本 默认值是""
     public static final String KEY = "download_ID";
 
     /**

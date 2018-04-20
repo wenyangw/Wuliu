@@ -13,9 +13,9 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.inputmethod.InputMethodManager
 import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.Toolbar
 import android.text.Html
-
-
+import kotlinx.android.synthetic.main.activity_login.*
 
 
 class CkfhScanShowActivity : AppCompatActivity() {
@@ -26,7 +26,6 @@ class CkfhScanShowActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ckfh_scan_show)
-
         context = this
         listenerEditViewVal()
     }
@@ -35,12 +34,8 @@ class CkfhScanShowActivity : AppCompatActivity() {
         et_scan_input.addTextChangedListener(EditTextChangeListener())
     }
 
-    override fun setTitle(title: CharSequence) {
-        super.setTitle("测试")
-    }
-
     fun getData(lsh: String){
-        val address = Utils.APP_URL + "/jxc/xsthAction!getXsth.action"
+        val address = Utils.sqlUrl(SPUtils.get(context, "serverUrl", "").toString(), "/jxc/xsthAction!getXsth.action")
         val params = mapOf("xsthlsh=" to lsh,
                                    "type=" to intent.getStringExtra("type"),
                                    "createId=" to intent.getStringExtra("createId"))
@@ -54,7 +49,7 @@ class CkfhScanShowActivity : AppCompatActivity() {
             when(xsth.msg){
                 ""  ->{
                         showCkfhDate(true)
-                        putTVText(xsth)
+                        putTvText(xsth)
                         btn_ckfh_submit.setOnClickListener{ckfhUpdata() }
                         adapterManager(xsth)
                 }
@@ -67,7 +62,7 @@ class CkfhScanShowActivity : AppCompatActivity() {
     }
 
     private fun ckfhUpdata() {
-        val address = Utils.APP_URL + "/jxc/xsthAction!updateXsthOut.action"
+        val address = Utils.sqlUrl(SPUtils.get(context, "serverUrl", "").toString(), "/jxc/xsthAction!updateXsthOut.action")
         val params = mapOf("xsthlsh=" to xsthlsh.toString(),
                 "type=" to intent.getStringExtra("type"),
                 "createId=" to intent.getStringExtra("createId").toString())
@@ -116,7 +111,7 @@ class CkfhScanShowActivity : AppCompatActivity() {
         recy_ckfh_recyler.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
     }
 
-    private fun putTVText(xsth: DatagridBean) {
+    private fun putTvText(xsth: DatagridBean) {
         tv_ckfh_bm.text = Html.fromHtml("<b>${getString(R.string.label_bmmc)}:</b>  ${xsth.obj.bmmc} ")
         tv_ckfh_lsh.text = Html.fromHtml("<b>${getString(R.string.label_lsh)}:</b>  ${xsth.obj.xsthlsh} ")
         tv_ckfh_kh.text = Html.fromHtml("<b>${getString(R.string.label_kh)}:</b>  ${xsth.obj.khmc} ")
@@ -127,7 +122,7 @@ class CkfhScanShowActivity : AppCompatActivity() {
         }
         btn_ckfh_submit.text = ("${getString(R.string.btn_submit)}")
     }
-//监听输入方法
+    //监听输入方法
     inner class EditTextChangeListener : TextWatcher {
         override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
         }

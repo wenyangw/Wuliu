@@ -7,17 +7,15 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import com.google.gson.reflect.TypeToken
 import com.lnyswz.wuliu.R
-import com.lnyswz.wuliu.common.ObjBean
-import com.lnyswz.wuliu.common.SqlUtils
-import com.lnyswz.wuliu.common.Utils
 import com.lnyswz.wuliu.control.CkfhListRecyclerViewAdpter
 import kotlinx.android.synthetic.main.activity_ckfh_list.*
 import java.util.*
 import android.support.v7.widget.DividerItemDecoration
-import android.view.Window
-
+import com.lnyswz.wuliu.common.DatagridBean
+import com.lnyswz.wuliu.common.SPUtils
+import com.lnyswz.wuliu.common.SqlUtils
+import com.lnyswz.wuliu.common.Utils
 
 class CkfhListActivity : AppCompatActivity(){
 
@@ -31,7 +29,6 @@ class CkfhListActivity : AppCompatActivity(){
     private var endYear: Int = 0
     private var endMonth: Int = 0
     private var endDay: Int = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +53,6 @@ class CkfhListActivity : AppCompatActivity(){
                         createMonth = cal.get(Calendar.MONTH)
                     }
         }
-
         createDay = cal.get(Calendar.DAY_OF_MONTH)
         tv_ckfh_list_createTime.text = "${createYear}-${manageDate(createMonth)}-${manageDate(createDay)}"
         tv_ckfh_list_createTime.setOnClickListener {
@@ -101,7 +97,8 @@ class CkfhListActivity : AppCompatActivity(){
         val inputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(et_ckfh_list_khmc.getWindowToken(), 0)
 
-        val address = Utils.APP_URL + "/jxc/xsthAction!getXsthOutList.action"
+        val address = Utils.sqlUrl(SPUtils.get(context, "serverUrl", "").toString(), "/jxc/xsthAction!getXsthOutList.action")
+
         val params = mapOf("type=" to intent.getStringExtra("type"),
                                     "createId=" to intent.getStringExtra("createId"),
                                     "createTime=" to "${tv_ckfh_list_createTime.text}",
@@ -114,19 +111,20 @@ class CkfhListActivity : AppCompatActivity(){
     internal inner class SqlData4XsthList(url: String, param: Map<String, String>) : SqlUtils(url, param) {
         override fun onPostExecute(s: String) {
             super.onPostExecute(s)
-            val xsths = Utils.getListFromJson<List<ObjBean>>(s, object : TypeToken<List<ObjBean>>() {}.type)
-            when(xsths.size) {
-                0    -> {
-                            showList("2")
-                            tv_ckfh_list_msg.text = getString(R.string.ckfh_list_no_list)
-                        }
-                else -> {
-                            showList("1")
-                            var adapter = CkfhListRecyclerViewAdpter(context!!, xsths,intent)
-                            recy_ckfh_list.adapter = adapter
-                            recy_ckfh_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                            recy_ckfh_list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-                        }
+            val xsth = Utils.getObjectFromJson(s, DatagridBean::class.java)
+            when(xsth.msg){
+                ""  ->{
+                    showList("1")
+                    var adapter = CkfhListRecyclerViewAdpter(context!!, xsth.rows,intent)
+                    recy_ckfh_list.adapter = adapter
+                    recy_ckfh_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                    recy_ckfh_list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+                }
+                else ->{
+                    showList("2")
+//                    tv_ckfh_list_msg.text = getString(R.string.ckfh_list_no_list)
+                    tv_ckfh_list_msg.text = xsth.msg
+                }
             }
         }
     }
@@ -163,7 +161,6 @@ class CkfhListActivity : AppCompatActivity(){
         }
         return "${int}"
     }
-
 
 }
 

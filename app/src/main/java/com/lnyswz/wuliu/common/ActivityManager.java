@@ -1,7 +1,6 @@
 package com.lnyswz.wuliu.common;
 
 import android.app.Activity;
-
 import java.util.HashSet;
 
 //记录Activity 用于退出App
@@ -48,12 +47,6 @@ public class ActivityManager {
         }
     }
 
-    // 此方法用于扩展使用
-    /*
-    public void onLowMemory() {
-      super.onLowMemory();
-      System.gc();
-    }
-    */
+
 
 }

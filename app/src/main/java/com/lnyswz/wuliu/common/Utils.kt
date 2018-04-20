@@ -1,30 +1,23 @@
 package com.lnyswz.wuliu.common
 
 import android.content.Context
-import android.content.Intent
-
 import android.widget.Toast
 import com.google.gson.Gson
-import com.lnyswz.wuliu.R
-import com.lnyswz.wuliu.view.CkfhScanShowActivity
-
 import java.lang.reflect.Type
-
 
 
 /**
  * Created by Wenyang on 2018/2/18.
  */
 object Utils {
-    val APP_URL = "http://192.168.0.8/lnyswz"
-    //val APP_URL = "http://218.25.74.6/lnyswz"
-    //val APP_URL = "http://192.168.0.2:8080"
-
     //进销存类别的id
     val CATALOG_ID = "aed966ee-e780-4a46-835f-3c6688ec3fd1"
 
     fun toast(context: Context, message: CharSequence) = Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 
+    fun sqlUrl(serverUrl: String, actionUrl: String): String{
+        return "http://${serverUrl}${actionUrl}"
+    }
 
     /**
      * json="[{}, {}, {}]"
@@ -44,30 +37,6 @@ object Utils {
         return Gson().fromJson<T>(key, cls)
     }
 
-
-
-
-
-
-    fun checkScan(resultString: String,context: Context): String {
-        var r = ""
-        when( resultString!!.length ){
-            13 ->  r = resultString!!.substring(0, 12)
-            else ->  toast(context, context.getString(R.string.scan_hint) )
-        }
-        return r
-    }
-
-
-    fun scanIntent(context: Context, scanResult: String, intentActivitySign: Intent ): Intent{
-
-        var intent = Intent(context,CkfhScanShowActivity::class.java )
-        intent.putExtra("lsh", scanResult)
-        intent.putExtra("type",intentActivitySign.getStringExtra("type"))
-        intent.putExtra("createId",intentActivitySign.getStringExtra("createId"))
-        return intent
-    }
-
     private var mExitTime: Long = 0
     fun exit(context:Context) {
         if (System.currentTimeMillis() - mExitTime > 2000) {
@@ -77,20 +46,11 @@ object Utils {
             ActivityManager.getInstance().exit()
         }
     }
-
 }
 
-
-
-
-
-
-data class verson(var versionCode: Int, var versionName: String)
-
+data class Version(var versionCode: Int, var versionName: String)
 
 data class JsonBean(val success: Boolean, val msg: String, val obj: ObjBean)
-
-
 
 data class DatagridBean(val total: Long,val msg: String, val obj: ObjBean, val rows: List<ObjBean>)
 
@@ -109,7 +69,6 @@ data class ObjBean( val id: String,
                     var bz: String,
                     var thfs: String,
 
-
                     val spbh: String,
                     var spmc: String,
                     var spcd: String,
@@ -118,9 +77,9 @@ data class ObjBean( val id: String,
                     var zjldwmc: String,
                     var cjldwmc: String,
                     var zdwsl: String,
-                    var cdwsl: String
-
-                    )
+                    var cdwsl: String,
+                    val msg: String
+ )
 
 
 
