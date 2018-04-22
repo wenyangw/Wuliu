@@ -33,25 +33,26 @@ class CkfhListActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ckfh_list)
+        title = Utils.getListActivityTitle(this, intent.getStringExtra("type"))
         context = this
-        crateTimeInto()
-        endTimeInto()
+        createTimeInit()
+        endTimeInit()
         btn_ckfh_list_select.setOnClickListener {
             getCkfhData()
         }
         getCkfhData()
     }
 
-    private fun crateTimeInto() {
-        when(cal.get(Calendar.MONTH)+1){
+    private fun createTimeInit() {
+        when(cal.get(Calendar.MONTH) + 1){
             1 -> {
-                    createYear = cal.get(Calendar.YEAR)-1
-                    createMonth = 12
-                }
+                createYear = cal.get(Calendar.YEAR) - 1
+                createMonth = 12
+            }
             else -> {
-                        createYear = cal.get(Calendar.YEAR)
-                        createMonth = cal.get(Calendar.MONTH)
-                    }
+                createYear = cal.get(Calendar.YEAR)
+                createMonth = cal.get(Calendar.MONTH)
+            }
         }
         createDay = cal.get(Calendar.DAY_OF_MONTH)
         tv_ckfh_list_createTime.text = "${createYear}-${manageDate(createMonth)}-${manageDate(createDay)}"
@@ -60,7 +61,7 @@ class CkfhListActivity : AppCompatActivity(){
         }
     }
 
-    private fun endTimeInto() {
+    private fun endTimeInit() {
         endYear = cal.get(Calendar.YEAR)
         endMonth = cal.get(Calendar.MONTH) + 1
         endDay = cal.get(Calendar.DAY_OF_MONTH)
@@ -70,14 +71,15 @@ class CkfhListActivity : AppCompatActivity(){
         }
     }
 
-    private fun timeManage(tv: TextView,year: Int, month: Int, day: Int,par: String) {
+    private fun timeManage(tv: TextView, year: Int, month: Int, day: Int, param: String) {
         showList("0")
         ckfh_list_datePicker.init(year, month - 1, day)
-        { datePicker, y, m, d ->
+        {datePicker, y, m, d ->
             datePicker.visibility = View.GONE
             showList(haveDates)
             tv.text = "${y}-${manageDate(m + 1)}-${manageDate(d)}"
-            when (par) {
+
+            when(param) {
                 "createTime" -> {
                     createYear = y
                     createMonth = m + 1
@@ -129,29 +131,29 @@ class CkfhListActivity : AppCompatActivity(){
         }
     }
 
-    fun showList(para: String){
-        when (para){
+    fun showList(param: String){
+        when (param){
             //点击日期初始化
             "0" ->{
-                        tv_ckfh_list_msg.visibility = View.GONE
-                        recy_ckfh_list.visibility = View.GONE
-                        ckfh_list_datePicker.visibility = View.VISIBLE
-                        btn_ckfh_list_select.visibility = View.GONE
-                    }
+                tv_ckfh_list_msg.visibility = View.GONE
+                recy_ckfh_list.visibility = View.GONE
+                ckfh_list_datePicker.visibility = View.VISIBLE
+                btn_ckfh_list_select.visibility = View.GONE
+            }
             //有数据显示
             "1" -> {
-                        tv_ckfh_list_msg.visibility = View.GONE
-                        recy_ckfh_list.visibility = View.VISIBLE
-                        btn_ckfh_list_select.visibility = View.VISIBLE
-                        haveDates = para
-                    }
+                tv_ckfh_list_msg.visibility = View.GONE
+                recy_ckfh_list.visibility = View.VISIBLE
+                btn_ckfh_list_select.visibility = View.VISIBLE
+                haveDates = param
+            }
             //没有数据，显示提示信息
             "2" -> {
-                        tv_ckfh_list_msg.visibility = View.VISIBLE
-                        recy_ckfh_list.visibility = View.GONE
-                        btn_ckfh_list_select.visibility = View.VISIBLE
-                        haveDates = para
-                    }
+                tv_ckfh_list_msg.visibility = View.VISIBLE
+                recy_ckfh_list.visibility = View.GONE
+                btn_ckfh_list_select.visibility = View.VISIBLE
+                haveDates = param
+            }
         }
     }
 

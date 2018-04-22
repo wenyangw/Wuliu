@@ -3,6 +3,7 @@ package com.lnyswz.wuliu.common
 import android.content.Context
 import android.widget.Toast
 import com.google.gson.Gson
+import com.lnyswz.wuliu.R
 import java.lang.reflect.Type
 
 
@@ -14,6 +15,14 @@ object Utils {
     val CATALOG_ID = "aed966ee-e780-4a46-835f-3c6688ec3fd1"
 
     fun toast(context: Context, message: CharSequence) = Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+
+    fun getOperaActivityTitle(context: Context, type: String): String{
+        return if(type == "out") context.getString(R.string.activity_title_ckfh) else context.getString(R.string.activity_title_shqr)
+    }
+
+    fun getListActivityTitle(context: Context, type: String): String{
+        return if(type == "out") context.getString(R.string.activity_title_fhmx) else context.getString(R.string.activity_title_shmx)
+    }
 
     fun sqlUrl(serverUrl: String, actionUrl: String): String{
         return "http://${serverUrl}${actionUrl}"
@@ -48,7 +57,7 @@ object Utils {
     }
 }
 
-data class Version(var versionCode: Int, var versionName: String)
+data class VersionBean(var versionCode: Int, var versionName: String)
 
 data class JsonBean(val success: Boolean, val msg: String, val obj: ObjBean)
 

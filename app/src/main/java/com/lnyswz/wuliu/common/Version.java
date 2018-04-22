@@ -7,7 +7,7 @@ import android.content.pm.PackageManager;
  * Created by Laizhen on 2017/4/21.
  */
 
-public class GetVersion {
+public class Version {
     /**
      * 获取当前本地apk的版本
      *
@@ -32,15 +32,15 @@ public class GetVersion {
      * @param context 上下文
      * @return
      */
-    public static String getVerName(Context context) {
-        String verName = "";
+    public static String getVersionName(Context context) {
+        String versionName = "";
         try {
-            verName = context.getPackageManager().
+            versionName = context.getPackageManager().
                     getPackageInfo(context.getPackageName(), 0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        return verName;
+        return versionName;
     }
 
 

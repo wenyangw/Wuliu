@@ -13,11 +13,12 @@ import kotlinx.android.synthetic.main.activity_ckfh_detail.*
 
 class CkfhDetailActivity : AppCompatActivity() {
 
-    private var context: Context?=null
+    private var context: Context? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ckfh_detail)
+        title = Utils.getListActivityTitle(this, intent.getStringExtra("type"))
         context = this
         getCkfhDetail()
     }
@@ -47,5 +48,4 @@ class CkfhDetailActivity : AppCompatActivity() {
             }
         }
     }
-
 }

@@ -90,6 +90,7 @@
         android:id="@+id/ckfh_list_datePicker"
         android:layout_width="wrap_content"
         android:layout_height="396dp"
+        android:calendarViewShown="false"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -11,23 +11,23 @@ import com.lnyswz.wuliu.R
 import com.lnyswz.wuliu.common.ObjBean
 import com.lnyswz.wuliu.view.CkfhDetailActivity
 
-class CkfhListRecyclerViewAdpter(var context: Context, var datas: List<ObjBean>,var intent: Intent) : RecyclerView.Adapter<CkfhListRecyclerViewAdpter.ViewHodler>() {
+class CkfhListRecyclerViewAdpter(var context: Context, var datas: List<ObjBean>, var intent: Intent): RecyclerView.Adapter<CkfhListRecyclerViewAdpter.ViewHodler>() {
     override fun onBindViewHolder(holder: ViewHodler?, position: Int) {
-        var data = datas.get(position)
-        holder!!.ckfh_lsh.text =Html.fromHtml("<b>${context.getString(R.string.label_lsh)}:</b>  ${data.xsthlsh}")
-        holder!!.ckfh_kh.text = Html.fromHtml("<b>${context.getString(R.string.label_kh)}:</b>  ${data.khmc}")
-        holder!!.ckfh_createTime.text =  Html.fromHtml("<b>${context.getString(R.string.label_time)}:</b>  ${data.createTime}")
+        var data = datas[position]
+        holder!!.ckfh_lsh.text = Html.fromHtml("<b>${context.getString(R.string.label_lsh)}:</b>  ${data.xsthlsh}")
+        holder.ckfh_kh.text = Html.fromHtml("<b>${context.getString(R.string.label_kh)}:</b>  ${data.khmc}")
+        holder.ckfh_createTime.text = Html.fromHtml("<b>${context.getString(R.string.label_time)}:</b>  ${data.createTime}")
         when(data.thfs){
-            "0" -> holder!!.ckfh_thfs.text = "${context.getString(R.string.thfs_0_sh)}"
-            "1" -> holder!!.ckfh_thfs.text  =  "${context.getString(R.string.thfs_1_zt)}"
-            else -> holder!!.ckfh_thfs.text = ""
+            "0" -> holder.ckfh_thfs.text = "${context.getString(R.string.thfs_0_sh)}"
+            "1" -> holder.ckfh_thfs.text  =  "${context.getString(R.string.thfs_1_zt)}"
+            else -> holder.ckfh_thfs.text = ""
         }
 
-        holder!!.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener{
             var inet = Intent(context,CkfhDetailActivity::class.java)
             inet!!.putExtra("lsh", data.xsthlsh)
-            inet!!.putExtra("type",intent.getStringExtra("type"))
-            inet.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK);
+            inet.putExtra("type", intent.getStringExtra("type"))
+            inet.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(inet)
         }
     }

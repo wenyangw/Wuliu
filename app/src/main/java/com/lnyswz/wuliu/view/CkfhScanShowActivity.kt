@@ -1,36 +1,35 @@
 package com.lnyswz.wuliu.view
 
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.text.Editable
+import android.text.Html
+import android.text.TextWatcher
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.lnyswz.wuliu.R
 import com.lnyswz.wuliu.common.*
 import com.lnyswz.wuliu.control.CkfhRecyclerViewAdpter
 import kotlinx.android.synthetic.main.activity_ckfh_scan_show.*
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.inputmethod.InputMethodManager
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.Toolbar
-import android.text.Html
-import kotlinx.android.synthetic.main.activity_login.*
-
 
 class CkfhScanShowActivity : AppCompatActivity() {
 
-    private var context: Context ?= null
-    private var xsthlsh: String ?= ""
+    private var context: Context? = null
+    private var xsthlsh: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ckfh_scan_show)
+        title = Utils.getOperaActivityTitle(this, intent.getStringExtra("type"))
         context = this
-        listenerEditViewVal()
+        listenEditViewVal()
     }
+
     //监听输入事件
-    fun listenerEditViewVal(){
+    fun listenEditViewVal(){
         et_scan_input.addTextChangedListener(EditTextChangeListener())
     }
 
@@ -48,14 +47,14 @@ class CkfhScanShowActivity : AppCompatActivity() {
             val xsth = Utils.getObjectFromJson(s, DatagridBean::class.java)
             when(xsth.msg){
                 ""  ->{
-                        showCkfhDate(true)
-                        putTvText(xsth)
-                        btn_ckfh_submit.setOnClickListener{ckfhUpdata() }
-                        adapterManager(xsth)
+                    showCkfhData(true)
+                    putTvText(xsth)
+                    btn_ckfh_submit.setOnClickListener{ckfhUpdata() }
+                    adapterManager(xsth)
                 }
                 else ->{
-                        showCkfhDate(false)
-                        tv_ckfh_scan_msg.text = "${xsth.msg}\n"
+                    showCkfhData(false)
+                    tv_ckfh_scan_msg.text = "${xsth.msg}\n"
                 }
             }
         }
@@ -80,14 +79,14 @@ class CkfhScanShowActivity : AppCompatActivity() {
         }
     }
 
-    private fun showCkfhDate (bol: Boolean ){
-        when(bol){
+    private fun showCkfhData (hide: Boolean ){
+        when(hide){
             true -> {
                 // 隐藏软键盘
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(window.decorView.windowToken, 0)
 
-                et_scan_input.visibility=View.GONE
+                et_scan_input.visibility = View.GONE
                 tv_ckfh_scan_msg.visibility = View.GONE
 
                 tv_ckfh_lsh.visibility = View.VISIBLE
@@ -116,12 +115,13 @@ class CkfhScanShowActivity : AppCompatActivity() {
         tv_ckfh_lsh.text = Html.fromHtml("<b>${getString(R.string.label_lsh)}:</b>  ${xsth.obj.xsthlsh} ")
         tv_ckfh_kh.text = Html.fromHtml("<b>${getString(R.string.label_kh)}:</b>  ${xsth.obj.khmc} ")
         when(xsth.obj.thfs){
-            "0" -> tv_ckfh_thfs.text = "自提"
-            "1" -> tv_ckfh_thfs.text = "送货"
+            "0" -> tv_ckfh_thfs.text = getString(R.string.thfs_0_sh)
+            "1" -> tv_ckfh_thfs.text = getString(R.string.thfs_1_zt)
             else -> tv_ckfh_thfs.text = ""
         }
         btn_ckfh_submit.text = ("${getString(R.string.btn_submit)}")
     }
+
     //监听输入方法
     inner class EditTextChangeListener : TextWatcher {
         override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
@@ -129,21 +129,21 @@ class CkfhScanShowActivity : AppCompatActivity() {
         override fun afterTextChanged(editable: Editable) {
         }
         override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int){
-            when( charSequence!!.length ){
-                13         -> judgeLsh(charSequence!!.substring(0, 12))
-                12         -> judgeLsh(charSequence!!.toString())
+            when(charSequence.length){
+                13         -> judgeLsh(charSequence.substring(0, 12))
+                12         -> judgeLsh(charSequence.toString())
                 in 0 .. 11 -> tv_ckfh_scan_msg.text = ""
             }
         }
     }
 
     private fun judgeLsh(lsh: String){
-        when( lsh!!.substring(6,8) ){
+        when(lsh.substring(6,8)){
             "05","11" -> {
-                            getData(lsh)
-                            xsthlsh = lsh
-                         }
-            else      ->    Utils.toast(this,"${getString(R.string.scan_no_lsh)}")
+                getData(lsh)
+                xsthlsh = lsh
+            }
+            else -> Utils.toast(this,"${getString(R.string.scan_no_lsh)}")
         }
     }
 }

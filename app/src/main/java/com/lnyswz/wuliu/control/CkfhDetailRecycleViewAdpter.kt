@@ -13,10 +13,10 @@ class CkfhDetailRecycleViewAdpter(var context: Context, var datas:  List<ObjBean
     override fun onBindViewHolder(holder: ViewHodler?, position: Int) {
         var data = datas.get(position)
         holder!!.ckfh_spbh.text =  Html.fromHtml("<b>${context.getString(R.string.label_spbh)}:</b>  ${data.spbh.trim()}")
-        holder!!.ckfh_spmc.text = Html.fromHtml("<b>${context.getString(R.string.label_spmc)}:</b>  ${data.spmc.trim()}")
+        holder.ckfh_spmc.text = Html.fromHtml("<b>${context.getString(R.string.label_spmc)}:</b>  ${data.spmc.trim()}")
 //        holder!!.ckfh_spcd.text = Html.fromHtml("<b>${context.getString(R.string.label_spcd)}:</b>  ${data.spcd.trim()}(${data.sppp.trim()})")
-        holder!!.ckfh_spcd.text = Html.fromHtml("<b>${context.getString(R.string.label_spcd)}:</b>  ${data.spcd.trim()}")
-        holder!!.ckfh_zdwsl.text = Html.fromHtml("<b>${context.getString(R.string.label_zjldsl)}:</b>  ${data.zdwsl.trim()}(${data.zjldwmc.trim()})")
+        holder.ckfh_spcd.text = Html.fromHtml("<b>${context.getString(R.string.label_spcd)}:</b>  ${data.spcd.trim()}")
+        holder.ckfh_zdwsl.text = Html.fromHtml("<b>${context.getString(R.string.label_zjldwsl)}:</b>  ${data.zdwsl.trim()}(${data.zjldwmc.trim()})")
     }
 
     override fun getItemCount(): Int {

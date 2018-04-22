@@ -1,6 +1,5 @@
 package com.lnyswz.wuliu.view
 
-
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,12 +11,11 @@ import com.lnyswz.wuliu.common.*
 import android.support.constraint.ConstraintSet
 import android.widget.ImageButton
 import com.lnyswz.wuliu.common.SqlUtils
-import com.lnyswz.wuliu.common.GetVersion
+import com.lnyswz.wuliu.common.Version
 import android.annotation.SuppressLint
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,24 +26,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         layout = findViewById(R.id.layout_main)
-        context=this
+        context = this
         showMain()
     }
 
     //标题菜单-更新
     @SuppressLint("ResourceType")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-    super.onCreateOptionsMenu(menu)
-    var versionName=String.format(this.getString(R.string.title_version),GetVersion.getVerName(this))
-    menu.add(Menu.NONE,  R.id.menu_update, 0, this.getString(R.string.title_update))
-    menu.add(Menu.NONE,  R.id.menu_versionName, 1,versionName )
+        super.onCreateOptionsMenu(menu)
+        var versionName = String.format(this.getString(R.string.title_version), Version.getVersionName(this))
+        menu.add(Menu.NONE, R.id.menu_update, 0, this.getString(R.string.title_update))
+        menu.add(Menu.NONE, R.id.menu_versionName, 1, versionName)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
-            R.id.menu_update//监听菜单按钮
-            -> {
+            //监听菜单按钮
+            R.id.menu_update -> {
                 getVersion()
             }
         }
@@ -55,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     //对返回键进行监听
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.repeatCount == 0) {
-            Utils.exit(this!!)
+            Utils.exit(this)
             return true
         }
         return super.onKeyDown(keyCode, event)
@@ -187,21 +185,19 @@ class MainActivity : AppCompatActivity() {
     internal inner class SqlData4Version(url: String, param: Map<String, String>) : SqlUtils(url, param) {
         override fun onPostExecute(s: String) {
             super.onPostExecute(s)
-            val appVersion = Utils.getObjectFromJson(s, Version::class.java)
+            val appVersion = Utils.getObjectFromJson(s, VersionBean::class.java)
             progressVersion(appVersion.versionCode)
         }
     }
 
     //系统版本升级
     private fun progressVersion(dataVersion: Int) {
-        //VersionUtils.getVersionCode(this)工具类里获取当前安装的apk版本号
-        val versionCode = GetVersion.getVersionCode(this)
+        //Version.getVersionCode(this)工具类里获取当前安装的apk版本号
+        val versionCode = Version.getVersionCode(this)
         if(versionCode < dataVersion){
             startService(Intent(this@MainActivity, DownloadService::class.java))
         }else{
             Utils.toast(applicationContext, this.getString(R.string.update_new_version))
         }
     }
-
-
 }
