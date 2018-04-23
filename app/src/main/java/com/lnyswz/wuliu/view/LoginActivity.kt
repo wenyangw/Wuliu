@@ -25,9 +25,12 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         context = this
 
-        //et_password.setInputType(InputType.TYPE_NULL) //密码始终不弹出软件键盘
-        putUserName()//填写登录过的用户名
-        et_password.onFocusChangeListener = onFocusChange()  //对密码获取焦点后隐藏键盘进行处理
+        //填写登录过的用户名
+        putUserName()
+        //密码始终不弹出软键盘
+        et_password.inputType = InputType.TYPE_NULL
+        //对密码获取焦点后隐藏键盘进行处理
+        et_password.onFocusChangeListener = onFocusChange()
         btn_login.setOnClickListener {
             login()
             ActivityManager.getInstance().addActivity(this)

@@ -117,7 +117,7 @@ class CkfhListActivity : AppCompatActivity(){
             when(xsth.msg){
                 ""  ->{
                     showList("1")
-                    var adapter = CkfhListRecyclerViewAdpter(context!!, xsth.rows,intent)
+                    var adapter = CkfhListRecyclerViewAdpter(context!!, xsth.rows, intent)
                     recy_ckfh_list.adapter = adapter
                     recy_ckfh_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                     recy_ckfh_list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
