@@ -13,6 +13,9 @@ import android.util.Log;
 
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * 作者：哇牛Aaron
  * 作者简书文章地址: http://www.jianshu.com/users/07a8b5386866/latest_articles
@@ -22,11 +25,15 @@ import java.io.File;
  */
 public class DownloadService extends Service {
     public static final String DOWNLOAD_FOLDER_NAME = "Wuliu";
-    public static final String DOWNLOAD_FILE_NAME = "app-release.apk";
+    public static final String DOWNLOAD_FILE_NAME = "app-release";
+    public static final String DOWNLOAD_FILE_TYPE = ".apk";
     public static final String APP_FILE_URL = "/update/";
     private DownloadManager downloadManager;
     private long downloadId;
     private DownloadFinish downloadFinish;
+
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+    public final String realFileName = simpleDateFormat.format(new Date());
 
 
     @Override
@@ -62,10 +69,10 @@ public class DownloadService extends Service {
         }
         //设置下载的URL
         DownloadManager.Request request = new DownloadManager.Request(
-                Uri.parse( "http://"+ SPUtils.get(DownloadService.this, "serverUrl", "").toString() + APP_FILE_URL + DOWNLOAD_FILE_NAME ));
+                Uri.parse( "http://"+ SPUtils.get(DownloadService.this, "serverUrl", "").toString() + APP_FILE_URL + DOWNLOAD_FILE_NAME + DOWNLOAD_FILE_TYPE ));
         request.setDestinationInExternalPublicDir(DOWNLOAD_FOLDER_NAME,
-                DOWNLOAD_FILE_NAME);
-        request.setTitle("wuliu-app");
+                DOWNLOAD_FILE_NAME + realFileName + DOWNLOAD_FILE_TYPE);
+                request.setTitle("wuliu-app");
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         //是否显示下载用户接口
         request.setVisibleInDownloadsUi(false);
@@ -78,7 +85,6 @@ public class DownloadService extends Service {
      * 接受下载完成的广播
      */
     class DownloadFinish extends BroadcastReceiver {
-
         @Override
         public void onReceive(Context context, Intent intent) {
             //此ID为下载完成的ID
@@ -90,7 +96,7 @@ public class DownloadService extends Service {
                         .getExternalStorageDirectory().getAbsolutePath())
                         .append(File.separator)
                         .append(DOWNLOAD_FOLDER_NAME)
-                        .append(File.separator).append(DOWNLOAD_FILE_NAME)
+                        .append(File.separator).append(DOWNLOAD_FILE_NAME + realFileName + DOWNLOAD_FILE_TYPE)
                         .toString();
                 install(context, apkFilePath);
             }

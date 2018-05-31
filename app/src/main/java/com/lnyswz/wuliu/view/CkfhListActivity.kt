@@ -17,10 +17,12 @@ import com.lnyswz.wuliu.common.SPUtils
 import com.lnyswz.wuliu.common.SqlUtils
 import com.lnyswz.wuliu.common.Utils
 
+import java.text.SimpleDateFormat
+
+
 class CkfhListActivity : AppCompatActivity(){
 
-    private var context: Context?= null
-    private val cal: Calendar = Calendar.getInstance()
+    private var context: Context? = null
     private var haveDates: String = "0"
 
     private var createYear: Int = 0
@@ -44,28 +46,30 @@ class CkfhListActivity : AppCompatActivity(){
     }
 
     private fun createTimeInit() {
-        when(cal.get(Calendar.MONTH) + 1){
-            1 -> {
-                createYear = cal.get(Calendar.YEAR) - 1
-                createMonth = 12
-            }
-            else -> {
-                createYear = cal.get(Calendar.YEAR)
-                createMonth = cal.get(Calendar.MONTH)
-            }
-        }
-        createDay = cal.get(Calendar.DAY_OF_MONTH)
-        tv_ckfh_list_createTime.text = "${createYear}-${manageDate(createMonth)}-${manageDate(createDay)}"
+        val ca = Calendar.getInstance()// 得到一个Calendar的实例
+        ca.time = Date()
+
+        ca.add(Calendar.MONTH, -1)// 月份减1
+        val resultDate = ca.time // 结果
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        createYear = ca.get(Calendar.YEAR)
+        createMonth = ca.get(Calendar.MONTH)+1
+        createDay = ca.get(Calendar.DAY_OF_MONTH)
+        tv_ckfh_list_createTime.text = "${sdf.format(resultDate)}"
         tv_ckfh_list_createTime.setOnClickListener {
             timeManage(tv_ckfh_list_createTime, createYear, createMonth, createDay, "createTime")
         }
     }
 
     private fun endTimeInit() {
-        endYear = cal.get(Calendar.YEAR)
-        endMonth = cal.get(Calendar.MONTH) + 1
-        endDay = cal.get(Calendar.DAY_OF_MONTH)
-        tv_ckfh_list_endTime.text = "${endYear}-${manageDate(endMonth)}-${manageDate(endDay)}"
+        val ca = Calendar.getInstance()// 得到一个Calendar的实例
+        ca.time = Date()
+        val resultDate = ca.time // 结果
+        endYear = ca.get(Calendar.YEAR)
+        endMonth = ca.get(Calendar.MONTH) + 1
+        endDay = ca.get(Calendar.DAY_OF_MONTH)
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        tv_ckfh_list_endTime.text = "${sdf.format(resultDate)}"
         tv_ckfh_list_endTime.setOnClickListener {
             timeManage(tv_ckfh_list_endTime, endYear, endMonth, endDay, "endTime")
         }
